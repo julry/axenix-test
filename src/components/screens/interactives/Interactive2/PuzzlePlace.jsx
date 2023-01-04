@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { useDrop } from 'react-dnd';
-import { useState } from 'react';
 import { Puzzle } from './Puzzle';
 
 const PuzzlePlaceStyled = styled.div`
   ${({ styles }) => styles};
-  border: 1px solid black;
+  position: relative;
+  bottom: auto;
+  width: calc(217px / 2);
+  height: 100%;
   border-bottom: none;
   border-top: none;
   background: none;
@@ -14,7 +16,7 @@ const PuzzlePlaceStyled = styled.div`
   }
 `;
 export const PuzzlePlace = (props) => {
-    const {puzzle, styles, droppedPuzzles, onPuzzleDrop} = props;
+    const {puzzle, styles, droppedPuzzles, onPuzzleDrop, rowInd} = props;
 
     const [{}, drop] = useDrop(() => ({
         accept: 'PUZZLE',
@@ -34,7 +36,7 @@ export const PuzzlePlace = (props) => {
             ref={drop}
             styles={styles}
         >
-            {droppedPuzzle && <Puzzle puzzle={droppedPuzzle} />}
+            {droppedPuzzle && <Puzzle puzzle={droppedPuzzle} rowInd={rowInd}/>}
         </PuzzlePlaceStyled>
-    )
-}
+    );
+};

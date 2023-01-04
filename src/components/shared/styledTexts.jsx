@@ -32,7 +32,7 @@ export const Title = styled(BoldText)`
   }
 `;
 
-export const Description = styled(MediumText)`
+export const Description = styled(RegularText)`
   font-size: 16px;
   
   @media screen and (max-width: 320px) {

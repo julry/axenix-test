@@ -22,6 +22,11 @@ export const QuestionWrapper = props => {
     // const questionsCount = questions.length;
     //
 
+    //Подумать насчет 2 экранов сразу тут же - менять по состоянию, то есть сначала покажется текст + фотка,
+    // потом состояние поменяется по нажатию на экран и отоборажать уже экран
+    //тут загвоздка с внезапным левым челом на каком-то из последних вопросов
+
+
     const onNext = () => {
         // const goal = questionNumber === questionsCount ? 'finishtest' : `question${questionNumber}`;
         // reachMetrikaGoal(goal);

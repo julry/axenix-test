@@ -6,7 +6,6 @@ import { usePreview } from 'react-dnd-multi-backend';
 
 const PuzzleStyled = styled.div`
   ${({ styles }) => styles};
-  position: relative;
   z-index: 10;
   -webkit-touch-callout: none;
   box-sizing: content-box;
@@ -51,6 +50,7 @@ export const Puzzle = (props) => {
     return (
         <PuzzleStyled
             styles={styles}
+            rowInd={props.rowInd}
             ref={mergeRefs([drag, dragRef])}
         />
     );

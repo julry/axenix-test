@@ -13,7 +13,7 @@ import { Question10 } from './components/screens/questions/Question10';
 import { Question11 } from './components/screens/questions/Question11';
 import { Question12 } from './components/screens/questions/Question12';
 import { Interactive1 } from './components/screens/interactives/Interactive1';
-import { Interactive2 } from './components/screens/interactives/Interactive2/Interactive2';
+import { Interactive2 } from './components/screens/interactives/Interactive2';
 import { Interactive3 } from './components/screens/interactives/Interactive3';
 import { Description1 } from './components/screens/descriptions/Description1';
 import { Description2 } from './components/screens/descriptions/Description2';
