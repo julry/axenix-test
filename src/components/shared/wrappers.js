@@ -41,3 +41,20 @@ export const BackgroundScaled = styled(Background)`
 export const BackgroundBlurred = styled(BackgroundScaled)`
   filter: blur(4.5px);
 `;
+
+
+export const PersonWrapper = styled.div`
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  height: 66.71%;
+  width: 50.1333vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const Person = styled.img`
+  height: 100%;
+`;

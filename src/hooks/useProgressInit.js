@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { screens } from '../screens.config';
+import { characters } from '../characters.config';
 
 const INITIAL_ANSWERS = {};
+const INITIAL_CHARACTER = characters[0];
 const INITIAL_PROGRESS = {
     answers: INITIAL_ANSWERS,
+    character: INITIAL_CHARACTER
 };
 
 export function useProgressInit() {
@@ -53,6 +56,7 @@ export function useProgressInit() {
         progress,
         currentScreenIndex,
         answers: progress.answers,
+        character: progress.character,
         screen,
         next,
         updateAnswer,

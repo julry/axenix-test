@@ -1,6 +1,7 @@
-import { QuestionWrapper } from '../QuestionWrapper';
+import React, { useState } from 'react';
 import { getQuestionById } from '../../../utils/getQuestionById';
+import { QuestionWrapper } from '../QuestionWrapper';
 
-export const Question1 = () => (
-    <QuestionWrapper question={getQuestionById('1')} />
-)
+export const Question1 = () => {
+    return <QuestionWrapper question={getQuestionById('1')} />
+}
