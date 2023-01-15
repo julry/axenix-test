@@ -160,6 +160,10 @@ const BackgroundWrapperStyled = styled(BackgroundWrapper)`
   filter: blur(${({isModal}) => isModal ? '4px' : '0'});
 `;
 
+const ModalStyled = styled(Modal)`
+    padding: 32px 50px;
+`;
+
 const onLinkCopy = () => {
     const text = window.location.href?.split('?')[0];
     if (window.clipboardData && window.clipboardData.setData) {
@@ -262,12 +266,12 @@ export const InfoQr = () => {
                  </BottomBlock>
             </ContentWrapperStyled>
             {isModal && (
-                <Modal>
+                <ModalStyled>
                     <ModalContent>
                         <DoneMarkStyled />
                         <p>Ссылка скопирована</p>
                     </ModalContent>
-                </Modal>
+                </ModalStyled>
             )}
         </Wrapper>
     );

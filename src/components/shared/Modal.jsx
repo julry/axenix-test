@@ -44,7 +44,7 @@ export const Modal = (props) => {
     return (
         <Wrapper>
             <Background/>
-            <Content>
+            <Content className={props.className}>
                 {props.close && <CloseIconStyled onClick={props.close}/>}
                 {props.children}
             </Content>
