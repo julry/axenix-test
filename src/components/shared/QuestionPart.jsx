@@ -8,24 +8,28 @@ const ContentPart = styled.div`
   display: flex;
   align-items: center;
   z-index: 5;
+  
+  @media screen and (min-width: 640px) and (min-height: 600px){
+    height: 500px;
+  }
 `;
 export const QuestionPart = (props) => {
-    const {background, person, onClick} = props;
+    const {background, person, onClick, personHeight, personWidth} = props;
     return (
         <>
             <BackgroundWrapper>
                 <BackgroundBlurred src={background} alt={''}/>
             </BackgroundWrapper>
-            <ContentWrapper onClick={onClick}>
+            <ContentWrapper onClick={onClick} className={props.className}>
                 {person && (
-                    <PersonWrapper>
-                        <Person src={person} alt={''} />
+                    <PersonWrapper height={personHeight} width={personWidth}>
+                        <Person src={person} alt={''}/>
                     </PersonWrapper>
                 )}
-                <ContentPart>
+                <ContentPart className={'question_content'}>
                     {props.children}
                 </ContentPart>
             </ContentWrapper>
         </>
-    )
-}
+    );
+};

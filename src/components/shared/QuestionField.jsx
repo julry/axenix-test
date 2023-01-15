@@ -18,16 +18,17 @@ const Triangle = styled.div`
 const TextField = styled.div`
   margin-top: -10px;
   background: ${({color}) => color};
+  color: ${({textColor}) => textColor};
   border-radius: 30px;
   padding: 10px 15px;
 `;
 
 export const QuestionField = (props) => {
-    const {color} = props;
+    const {color, textColor} = props;
     return (
         <Wrapper>
             <Triangle color={color}/>
-            <TextField color={color}>
+            <TextField color={color} textColor={textColor}>
                 {props.children}
             </TextField>
         </Wrapper>

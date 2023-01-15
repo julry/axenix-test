@@ -20,6 +20,51 @@ import { Description2 } from './components/screens/descriptions/Description2';
 import { Description3 } from './components/screens/descriptions/Description3';
 import { Prefinal } from './components/screens/Prefinal';
 import { Final } from './components/screens/Final';
+import { PreInteract2 } from './components/screens/interactives/Interactive2/PreInteract2';
+import { PreInteract1 } from './components/screens/interactives/Interactive1/PreInteract1';
+import { PreInteract3 } from './components/screens/interactives/Interactive3/PreInteract3';
+import { PostInteract3 } from './components/screens/interactives/Interactive3/PostInteract3';
+import {
+  woodBg,
+  bgInteract3,
+  bgInteract1,
+  alice,
+  denis,
+  pauline,
+  andrew,
+  aliceBedroom,
+  denisBedroom,
+  paulineBedroom,
+  andrewBedroom,
+  aliceKitchen,
+  denisKitchen,
+  paulineKitchen,
+  andrewKitchen,
+  femaleWardrobe,
+  maleWardrobe,
+  axenixFirst,
+  axenixOffice8,
+  axenixOffice,
+  axenixOffice2,
+  axenixOffice5,
+  axenixOffice3,
+  axenixOffice7,
+  axenixOffice4,
+  axenixOffice6,
+  axenixOffice9,
+  axenixOffice10,
+  axenixOffice11,
+  hall,
+  square,
+  manCeo,
+  kirill,
+  present,
+  bus,
+  boxClosed
+} from './constants/images';
+import box_open from './components/screens/interactives/Interactive1/svg/box_open.svg';
+import puzzleBoard from './components/screens/interactives/Interactive2/svgs/puzzleBoard.svg';
+import board from './components/screens/interactives/Interactive2/svgs/board.svg';
 
 
 export const ScreenType = {
@@ -35,105 +80,102 @@ export const screens = [
     name: 'intro',
     component: Intro,
     type: ScreenType.Intro,
-    preloadImages: []
+    preloadImages: [andrew, alice, denis, pauline]
   },
   {
     name: 'question-0',
     component: Question0,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [aliceBedroom, denisBedroom, paulineBedroom, andrewBedroom]
   },
   {
     name: 'question-1',
     component: Question1,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [aliceKitchen, denisKitchen, paulineKitchen, andrewKitchen]
   },
   {
     name: 'question-2',
     component: Question2,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [femaleWardrobe, maleWardrobe],
   },
   {
     name: 'question-3',
     component: Question3,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [bus, hall, square],
+    
   },
   {
     name: 'question-4',
     component: Question4,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [axenixFirst, kirill]
   },
   {
     name: 'question-5',
     component: Question5,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [bgInteract1, boxClosed]
   },
   {
-    name: 'question-6',
-    component: Question6,
-    type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    name: 'game-1-1',
+    component: PreInteract1,
+    type: ScreenType.Game,
+    preloadImages: [box_open]
   },
   {
     name: 'game-1',
     component: Interactive1,
     type: ScreenType.Game,
-    preloadImages: [],
-    image: []
+    preloadImages: [axenixOffice],
   },
   {
-    name: 'question-7',
-    component: Question7,
+    name: 'question-6',
+    component: Question6,
     type: ScreenType.Question,
+    preloadImages: [woodBg, puzzleBoard, board],
+  },
+  {
+    name: 'game-2-1',
+    component: PreInteract2,
+    type: ScreenType.Game,
     preloadImages: [],
-    image: []
+    
   },
   {
     name: 'game-2',
     component: Interactive2,
     type: ScreenType.Game,
-    preloadImages: [],
-    image: []
+    preloadImages: [axenixOffice2],
+    
+  },
+  {
+    name: 'question-7',
+    component: Question7,
+    type: ScreenType.Question,
+    preloadImages: [axenixOffice3],
+    
   },
   {
     name: 'question-8',
     component:  Question8,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [axenixOffice4],
   },
   {
     name: 'question-9',
     component:  Question9,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
-  },
-  {
-    name: 'question-10',
-    component:  Question10,
-    type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [axenixOffice5],
+    
   },
   {
     name: 'descr-1',
     component:  Description1,
     type: ScreenType.Description,
-    preloadImages: [],
-    image: [],
+    preloadImages: [axenixOffice6, axenixOffice7],
     dependentQuestion: {
       id: '9',
       answers: ['1', '3']
@@ -143,40 +185,53 @@ export const screens = [
     name: 'descr-2',
     component:  Description2,
     type: ScreenType.Question,
-    preloadImages: [],
-    image: []
+    preloadImages: [axenixOffice8, manCeo],
   },
   {
     name: 'descr-3',
     component: Description3,
     type: ScreenType.Description,
-    preloadImages: [],
-    image: [],
+    preloadImages: [axenixOffice9],
     dependentQuestion: {
       id: '3',
       answers: ['3', '4']
     }
   },
   {
+    name: 'question-10',
+    component:  Question10,
+    type: ScreenType.Question,
+    preloadImages: [axenixOffice10],
+  },
+  {
     name: 'question-11',
     component:  Question11,
     type: ScreenType.Question,
+    preloadImages: [bgInteract3],
+  },
+  {
+    name: 'game-3-1',
+    component: PreInteract3,
+    type: ScreenType.Game,
     preloadImages: [],
-    image: []
   },
   {
     name: 'game-3',
-    component:  Interactive3,
+    component: Interactive3,
     type: ScreenType.Game,
     preloadImages: [],
-    image: []
+  },
+  {
+    name: 'game-3-2',
+    component: PostInteract3,
+    type: ScreenType.Game,
+    preloadImages: [axenixOffice11, present],
   },
   {
     name: 'question-12',
     component:  Question12,
     type: ScreenType.Question,
     preloadImages: [],
-    image: []
   },
   {
     name: 'final-1',

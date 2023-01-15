@@ -7,15 +7,6 @@ export const ContentWrapper = styled.div`
   z-index: 2;
   display: flex;
   flex-direction: column;
-
-  @media screen and (min-width: 700px) {
-    max-width: 550px;
-    margin: 0 auto;
-
-    & svg {
-      max-width: 350px;
-    }
-  }
 `;
 
 export const BackgroundWrapper = styled.div`
@@ -48,8 +39,10 @@ export const PersonWrapper = styled.div`
   z-index: 2;
   bottom: 0;
   left: 0;
-  height: 66.71%;
-  width: 50.1333vw;
+  height: ${({height}) => height};
+  width: ${({width}) => width};
+  max-width: 34vh;
+  min-width: 185px;
   overflow: hidden;
   display: flex;
   justify-content: flex-end;

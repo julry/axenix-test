@@ -5,7 +5,7 @@ import Draggable from "gsap/Draggable";
 import { Button } from '../../../shared/Button';
 import { useProgress } from '../../../../hooks/useProgress';
 import { LinesGame } from './svg/LinesGame';
-import { Background, BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
+import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
 import box_open from './svg/box_open.svg'
 import { WinStars } from '../../../shared/WinStars';
 import { bgInteract1 } from '../../../../constants/images';
@@ -50,13 +50,14 @@ const BoxWrapper = styled.div`
 `;
 
 const Dump = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 32;
-  width: 286px;
-  height: 242px;
+  //position: absolute;
+  //top: 50%;
+  //left: 50%;
+  //transform: translate(-50%, -50%);
+  //z-index: 32;
+  //width: 286px;
+  //height: 242px;
+  //border: 1px solid red;
 `;
 
 const ButtonStyled = styled(Button)`
@@ -76,14 +77,12 @@ export const WinStarsStyled = styled(WinStars)`
 
 export const Interactive1 = () => {
     const [completed, setCompleted] = useState([]);
-    const [finished, setFinished] = useState(true);
+    const [finished, setFinished] = useState(false);
     const {next} = useProgress();
     gsap.registerPlugin(Draggable);
     const gameRef = useRef();
 
     useEffect(() => {
-        const onTouch = () => {};
-        window.addEventListener('touchmove', onTouch);
         Draggable.create(".draggable-1", {
             type: "x,y",
             onDrag: function () { updateLine('.line-1', this.x + 24, this.y + 160, '#line-1_gradient'); },
@@ -140,10 +139,6 @@ export const Interactive1 = () => {
             bounds: gameRef.current,
             liveSnap: {points: [{x: 208, y: 101.5}], radius: 25}
         });
-
-        return () => {
-            window.removeEventListener('touchmove', onTouch)
-        }
     }, [])
 
     function updateLine(selector, x, y, selectorGr) {
@@ -226,7 +221,7 @@ export const Interactive1 = () => {
                 <BoxWrapper>
                     {finished && (
                         <Dump>
-                            <WinStarsStyled />
+                            {/*<WinStarsStyled />*/}
                             <ButtonStyled onClick={next}>Продолжить</ButtonStyled>
                         </Dump>
                     )}
@@ -236,6 +231,5 @@ export const Interactive1 = () => {
                 </BoxWrapper>
             </ContentWrapper>
         </Wrapper>
-
     );
 };

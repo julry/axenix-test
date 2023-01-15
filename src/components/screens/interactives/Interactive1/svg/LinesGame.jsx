@@ -26,7 +26,7 @@ export const LinesGame = () => (
         <line className={'line-4'} x1="19" y1="7.8" x2="19" y2="7.8" stroke="url(#line-4_gradient)" strokeWidth="13"/>
 
         <g className={'draggable-1'}>
-            <rect x={'0'} y={140.687} width="55" height="38.7572"/>
+            <rect x={'0'} y={140.687} width="55" height="38.7572" fill="transparent"/>
             <mask id="mask2_225_3" style={{maskType: 'alpha'}} maskUnits="userSpaceOnUse" x="19" y="154" width="13" height="13">
                 <path d="M22.0198 154.233C20.8423 154.233 19.4836 156.68 19.4836 160.033C19.4836 163.295 20.8423 165.833 22.0198 165.833C22.0544 165.833 31.8027 166.014 31.8027 166.014L31.8025 154.233L22.0198 154.233Z" fill="url(#paint7_linear_225_3)"/>
             </mask>
@@ -36,7 +36,7 @@ export const LinesGame = () => (
             </g>
         </g>
         <g className={'draggable-2'} >
-            <rect x="0" y="88.667" width="55" height="38.7572"/>
+            <rect x="0" y="88.667" width="55" height="38.7572" fill="transparent"/>
             <mask id="mask6_225_3" style={{maskType: 'alpha'}} maskUnits="userSpaceOnUse" x="19" y="103" width="13" height="13">
                 <path d="M22.0198 103.483C20.8423 103.483 19.4836 105.93 19.4836 109.283C19.4836 112.545 20.8423 115.083 22.0198 115.083C22.0544 115.083 31.8027 115.264 31.8027 115.264L31.8025 103.483L22.0198 103.483Z" fill="url(#paint21_linear_225_3)"/>
             </mask>
@@ -46,7 +46,7 @@ export const LinesGame = () => (
             </g>
         </g>
         <g className={'draggable-3'}>
-            <rect x="0" y="37.6487" width="55" height="38.7572"/>
+            <rect x="0" y="37.6487" width="55" height="38.7572" fill="transparent"/>
             <mask id="mask10_225_3" style={{maskType: 'alpha'}} maskUnits="userSpaceOnUse" x="19" y="52" width="13" height="13">
                 <path d="M22.0198 52.7332C20.8423 52.7332 19.4836 55.18 19.4836 58.5332C19.4836 61.7957 20.8423 64.3332 22.0198 64.3332C22.0544 64.3332 31.8027 64.5144 31.8027 64.5144L31.8025 52.7332L22.0198 52.7332Z" fill="url(#paint35_linear_225_3)"/>
             </mask>
@@ -56,7 +56,7 @@ export const LinesGame = () => (
             </g>
         </g>
         <g className={'draggable-4'}>
-            <rect x="0" y="-11.37036" width="55" height="38.7572"/>
+            <rect x="0" y="-11.37036" width="55" height="38.7572" fill="transparent"/>
             <mask id="mask13_225_3" style={{maskType: 'alpha'}} maskUnits="userSpaceOnUse" x="19" y="1" width="13" height="13">
                 <path d="M22.0198 1.98315C20.8423 1.98315 19.4836 4.43003 19.4836 7.78315C19.4836 11.0457 20.8423 13.5832 22.0198 13.5832C22.0544 13.5832 31.8027 13.7644 31.8027 13.7644L31.8025 1.98315L22.0198 1.98315Z" fill="url(#paint48_linear_225_3)"/>
             </mask>

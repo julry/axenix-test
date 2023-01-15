@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { MouseTransition, DndProvider, TouchTransition } from 'react-dnd-multi-backend';
-import { Button } from '../../../shared/Button';
 import { useProgress } from '../../../../hooks/useProgress';
 import { shuffle } from '../../../../utils/shuffle';
 import { Board } from './Board';
@@ -16,6 +15,9 @@ import { colors } from '../../../../constants/colors';
 import { Background, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
 import { woodBg } from '../../../../constants/images';
 import { WinStars } from '../../../shared/WinStars';
+import { ButtonCentered } from '../../../shared/ButtonCentered';
+import { opacityAnim } from '../../../shared/keyframes';
+import boardWin from './svgs/boardWin.svg';
 
 const PUZZLES_ROW_AMOUNT = 2;
 const PUZZLES_COLUMN_AMOUNT = 2;
@@ -23,7 +25,6 @@ const PUZZLES_COLUMN_AMOUNT = 2;
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10px;
 `;
 
 const PuzzlesRow = styled.div`
@@ -36,6 +37,48 @@ const PuzzlesRow = styled.div`
   flex-wrap: wrap;
 `;
 
+const appear = keyframes`
+  from {
+    height: 0;
+    margin-top: 21.5%;
+  }
+  to {
+    height: 111px;
+    margin-top: min(22vw, 12.4vh);
+  }
+`;
+
+const WinStarsWrapper = styled.div`
+  width: 100%;
+  height: 111px;
+  margin-top: 21.5%;
+  animation: ${appear} 1.2s ease-in forwards;
+`;
+
+const WinStarsStyled = styled(WinStars)`
+  & g {
+    animation-delay: 1.2s;
+  }
+
+  & #star2 {
+    animation-delay: 2.34s;
+  }
+
+  & #star3 {
+    animation-delay: 1.76s;
+  }
+`;
+
+const ButtonCenteredStyled = styled(ButtonCentered)`
+  opacity: 0;
+  animation: ${opacityAnim} 1s ease-in forwards;
+  animation-delay: 1.5s;
+`;
+
+const BoardWin = styled(Board)`
+  background: url(${boardWin});
+  margin-top: 6%;
+`;
 
 const makeArray = (amount, mapFn) => Array.from({length: amount}, mapFn);
 
@@ -120,7 +163,7 @@ export const Interactive2 = () => {
 
     useEffect(() => {
         if (checkWinPuzzle()) {
-            setIsWin(true);
+            setTimeout(() => setIsWin(true), 100);
         }
     }, [droppedPuzzles]);
 
@@ -202,22 +245,22 @@ export const Interactive2 = () => {
 
     return (
         <Wrapper>
-            {/*Ты решил записаться на корпоративные курсы по английскому, но забыл промокод для Skyeng :(*/}
-            {/*Собери пазл-подсказку, чтобы продолжить игру.*/}
             <BackgroundWrapper>
                 <Background src={woodBg} alt={''} />
             </BackgroundWrapper>
             <ContentWrapper>
                 {isWin ? (
                     <>
-                        <WinStars />
-                        <Board isWin />
-                        <Button onClick={next}>Продолжить</Button>
+                        <WinStarsWrapper>
+                            <WinStarsStyled />
+                        </WinStarsWrapper>
+                        <BoardWin />
+                        <ButtonCenteredStyled onClick={next}>Продолжить</ButtonCenteredStyled>
                     </>
                 ) : (
                         <DndProvider options={HTML5toTouch}>
                             <Board puzzles={puzzles} onPuzzleDrop={onDrop} droppedPuzzles={droppedPuzzles}/>
-                            <PuzzlesRow>
+                            <PuzzlesRow >
                                 {shownPuzzles.filter(puz=> !puz.dropped).map((puzzle) => (
                                     <PuzzleWrapper key={puzzle.id} styles={mapInitialPosition(...puzzle.position)}>
                                         <Puzzle

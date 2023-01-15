@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import './characterChoose.css';
 import { colors } from '../../../../constants/colors';
 import { Description } from '../../../shared/styledTexts';
+import { opacityAnim } from '../../../shared/keyframes';
 
 const CharacterWrapper = styled.div`
   width: 100%;
@@ -29,23 +30,21 @@ const CharacterInfo = styled.div`
   border-radius: 13px 0 0 13px;
   border-right: none;
   transform: matrix(1,0,0.2,1,0,0);
-  animation: ${({isOpacity}) => isOpacity ? opacityKey : ''} 300ms forwards;
+  animation: ${({isOpacity}) => isOpacity ? opacityAnim : ''} 300ms forwards;
   animation-delay: 350ms;
   transition: opacity 300ms;
+  white-space: pre;
   
   & ${Description} {
     transform: matrix(1,0, -0.2,1,0,0);
   }
+  
+  @media screen and (max-width: 310px) {
+      min-width: 170px;
+  }
 `;
 
-const opacityKey = keyframes`
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-`
+
 
 export const CharacterCard = (props) => {
     const {photo, post, name, changed} = props;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { PuzzlePlace } from './PuzzlePlace';
 import { colors } from '../../../../constants/colors';
 import board from './svgs/board.svg';
-import boardWin from './svgs/boardWin.svg';
 
 const PuzzleBoardWrapper = styled.div`
   position: relative;
@@ -10,7 +9,7 @@ const PuzzleBoardWrapper = styled.div`
   margin: 21.5% auto 5.2%;
   border: 5px solid ${colors.purple};
   height: 227px;
-  background: url(${({isWin}) => isWin ? boardWin : board}) -0.5px -0.5px;
+  background: url(${board}) -0.5px -0.5px;
 `;
 
 const PuzzleBoardRow = styled.div`
@@ -19,10 +18,10 @@ const PuzzleBoardRow = styled.div`
 `;
 
 export const Board = (props) => {
-    const {puzzles = [], onPuzzleDrop, droppedPuzzles, isWin} = props;
+    const {puzzles = [], onPuzzleDrop, droppedPuzzles} = props;
 
     return (
-        <PuzzleBoardWrapper isWin={isWin}>
+        <PuzzleBoardWrapper className={props.className}>
             {puzzles.map((puzzleRow, i) => (
                 <PuzzleBoardRow key={i} rowInd={i}>
                     {

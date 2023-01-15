@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   --board-size: 313px;
   --button-size: 66px;
   
-  @media screen and (max-width: 315px) {
+  @media screen and (max-width: 320px) {
     --button-size: 48px;
     --board-size: 265px;
   }

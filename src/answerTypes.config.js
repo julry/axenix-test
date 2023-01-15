@@ -14,6 +14,14 @@ export const AnswerTypeRus = {
     [AnswerType.flexibility]: 'Гибкость',
 };
 
+export const AnswerTypeRusNotif = {
+    [AnswerType.communication]: { positive: 'коммуникабельности', negative: 'коммуникабельности' },
+    [AnswerType.career]: { positive: 'карьере', negative: 'карьеры' },
+    [AnswerType.caring]:  { positive: 'заботе о себе', negative: 'заботы о себе' },
+    [AnswerType.leadership]: { positive: 'лидерству', negative: 'лидерства' },
+    [AnswerType.flexibility]: { positive: 'гибкости', negative: 'гибкости' },
+};
+
 export const MAX_POINTS = {
     [AnswerType.communication]: 7,
     [AnswerType.career]: 8,

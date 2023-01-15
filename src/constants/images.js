@@ -33,6 +33,9 @@ import axenixOffice8 from '../static/images/axenix-office-8.png';
 import axenixOffice9 from '../static/images/axenix-office-9.png';
 import axenixOffice10 from '../static/images/axenix-office-10.png';
 import axenixOffice11 from '../static/images/axenix-office-11.png';
+import boxClosed from '../static/images/closeBox.png';
+import bgDesktop from '../static/images/bgDesktop.png';
+import desktopPeople from '../static/images/desktopPeople.png';
 
 export {
     woodBg,
@@ -69,5 +72,8 @@ export {
     manCeo,
     kirill,
     present,
-    bus
+    bus,
+    boxClosed,
+    bgDesktop,
+    desktopPeople
 }

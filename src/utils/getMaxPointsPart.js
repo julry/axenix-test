@@ -5,5 +5,5 @@ export const getPointsDetailInfo = (points) => Object.keys(points).map(key => ({
     type: AnswerType[key],
     name: AnswerTypeRus[key],
     max: MAX_POINTS[key],
-    part: points[key] / MAX_POINTS[key]
+    part: (points[key] / MAX_POINTS[key])
 }));

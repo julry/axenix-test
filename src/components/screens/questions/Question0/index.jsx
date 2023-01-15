@@ -10,6 +10,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './characterChoose.css';
 import { Title } from '../../../shared/styledTexts';
 import { Arrow } from './svg/Arrow';
+import { colors } from '../../../../constants/colors';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -44,6 +45,7 @@ const TitleStyled = styled(Title)`
 const ArrowStyled = styled(Arrow)`
   width: 18px;
   height: 30px;
+  z-index: 666;
 `;
 
 const ArrowRight = styled(ArrowStyled)`
@@ -51,7 +53,7 @@ const ArrowRight = styled(ArrowStyled)`
 `;
 
 export const Question0 = () => {
-    const {updateProgress, next} = useProgress();
+    const {updateProgress, next, updateAnswer} = useProgress();
     const [curCharacterIndex, setCurCharacterIndex] = useState(0);
     const [side, setSide] = useState('');
     const nodeRef = useRef(null);
@@ -74,6 +76,7 @@ export const Question0 = () => {
 
     const onChoose = () => {
         updateProgress('character', characters[curCharacterIndex]);
+        updateAnswer('0', characters[curCharacterIndex].id);
         next();
     }
 
@@ -103,7 +106,7 @@ export const Question0 = () => {
                     </CharacterWrapper>
                     <ArrowRight onClick={onNext} />
                 </ChooseWrapper>
-                <Button onClick={onChoose}>Выбрать</Button>
+                <Button onClick={onChoose} color={colors.orange}>Выбрать</Button>
             </ContentWrapperStyled>
             <BackgroundWrapper>
                 <Background src={gradientBg} alt={''}/>

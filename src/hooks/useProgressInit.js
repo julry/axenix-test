@@ -27,9 +27,10 @@ export function useProgressInit() {
     };
 
     const next = () => {
-        const hasFulfilledDependCondition = !screen.dependentQuestion ||
-            (screen.dependentQuestion &&
-            screen.dependentQuestion?.answers.includes(progress.answers[screen.dependentQuestion?.id]));
+        const nextScreen = screens[currentScreenIndex + 1];
+        const hasFulfilledDependCondition = !nextScreen?.dependentQuestion ||
+            (nextScreen.dependentQuestion &&
+                nextScreen.dependentQuestion?.answers.includes(progress.answers[nextScreen?.dependentQuestion?.id]));
         const nextScreenIndex = currentScreenIndex + 1 + !hasFulfilledDependCondition;
         const canNext = nextScreenIndex <= screens.length - 1;
 
