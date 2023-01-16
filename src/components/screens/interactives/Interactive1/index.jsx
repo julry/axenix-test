@@ -221,7 +221,7 @@ export const Interactive1 = () => {
                 <BoxWrapper>
                     {finished && (
                         <Dump>
-                            {/*<WinStarsStyled />*/}
+                            <WinStarsStyled />
                             <ButtonStyled onClick={next}>Продолжить</ButtonStyled>
                         </Dump>
                     )}
