@@ -50,14 +50,13 @@ const BoxWrapper = styled.div`
 `;
 
 const Dump = styled.div`
-  //position: absolute;
-  //top: 50%;
-  //left: 50%;
-  //transform: translate(-50%, -50%);
-  //z-index: 32;
-  //width: 286px;
-  //height: 242px;
-  //border: 1px solid red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 32;
+  width: 286px;
+  height: 242px;
 `;
 
 const ButtonStyled = styled(Button)`
@@ -221,7 +220,7 @@ export const Interactive1 = () => {
                 <BoxWrapper>
                     {finished && (
                         <Dump>
-                            {/*<WinStarsStyled />*/}
+                            <WinStarsStyled />
                             <ButtonStyled onClick={next}>Продолжить</ButtonStyled>
                         </Dump>
                     )}
