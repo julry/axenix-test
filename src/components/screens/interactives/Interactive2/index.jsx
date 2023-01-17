@@ -18,6 +18,7 @@ import { WinStars } from '../../../shared/WinStars';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { opacityAnim } from '../../../shared/keyframes';
 import boardWin from './svgs/boardWin.svg';
+import { PuzzlesRow } from './PuzzlesRow';
 
 const PUZZLES_ROW_AMOUNT = 2;
 const PUZZLES_COLUMN_AMOUNT = 2;
@@ -25,16 +26,6 @@ const PUZZLES_COLUMN_AMOUNT = 2;
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const PuzzlesRow = styled.div`
-  display: flex;
-  position: relative;
-  max-height: 212px;
-  background: ${colors.orange};
-  flex-shrink: 1;
-  flex-grow: 1;
-  flex-wrap: wrap;
 `;
 
 const appear = keyframes`
@@ -99,12 +90,6 @@ const fillPuzzlesArray = (rowInd, colInd) => (
         }
     }
 );
-
-const PuzzleWrapper = styled.div`
-  position: absolute;
-  ${({ styles }) => styles};
-`;
-
 
 const mapInitialPosition = (x, y) => {
     const positions = {
@@ -243,6 +228,16 @@ export const Interactive2 = () => {
         setDroppedPuzzles((dropped) => getDroppedPuzzles(dropped, puzzle, {id, position, itemPosition}));
     }
 
+    const onRemove = (puzzle) => {
+        hidePuzzles(puzzle.id, false);
+        setDroppedPuzzles((dropped) => {
+            const puzzleId = dropped.findIndex(puzz => puzz.id === puzzle.id);
+            const newDropped = [...dropped];
+            newDropped.splice(puzzleId, 1);
+            return newDropped;
+        })
+    }
+
     return (
         <Wrapper>
             <BackgroundWrapper>
@@ -260,15 +255,7 @@ export const Interactive2 = () => {
                 ) : (
                         <DndProvider options={HTML5toTouch}>
                             <Board puzzles={puzzles} onPuzzleDrop={onDrop} droppedPuzzles={droppedPuzzles}/>
-                            <PuzzlesRow >
-                                {shownPuzzles.filter(puz=> !puz.dropped).map((puzzle) => (
-                                    <PuzzleWrapper key={puzzle.id} styles={mapInitialPosition(...puzzle.position)}>
-                                        <Puzzle
-                                            puzzle={puzzle}
-                                        />
-                                    </PuzzleWrapper>
-                                ))}
-                            </PuzzlesRow>
+                            <PuzzlesRow shownPuzzles={shownPuzzles} mapInitialPosition={mapInitialPosition} onDrop={onRemove}/>
                         </DndProvider>
                     )
                 }
