@@ -65,7 +65,10 @@ import {
 import box_open from './components/screens/interactives/Interactive1/svg/box_open.svg';
 import puzzleBoard from './components/screens/interactives/Interactive2/svgs/puzzleBoard.svg';
 import board from './components/screens/interactives/Interactive2/svgs/board.svg';
-
+import cakeFinished from './components/screens/interactives/Interactive3/svg/cakeFinished.svg';
+import cake from './components/screens/interactives/Interactive3/svg/cake.svg';
+import cakeStart from './components/screens/interactives/Interactive3/svg/cakeStart.svg';
+import finalSvg from './components/screens/interactives/Interactive3/svg/final.svg';
 
 export const ScreenType = {
   Intro: 'intro',
@@ -168,14 +171,14 @@ export const screens = [
     name: 'question-9',
     component:  Question9,
     type: ScreenType.Question,
-    preloadImages: [axenixOffice5],
+    preloadImages: [axenixOffice5, axenixOffice6, axenixOffice7],
     
   },
   {
     name: 'descr-1',
     component:  Description1,
     type: ScreenType.Description,
-    preloadImages: [axenixOffice6, axenixOffice7],
+    preloadImages: [axenixOffice8],
     dependentQuestion: {
       id: '9',
       answers: ['1', '3']
@@ -185,13 +188,13 @@ export const screens = [
     name: 'descr-2',
     component:  Description2,
     type: ScreenType.Question,
-    preloadImages: [axenixOffice8, manCeo],
+    preloadImages: [axenixOffice9, manCeo],
   },
   {
     name: 'descr-3',
     component: Description3,
     type: ScreenType.Description,
-    preloadImages: [axenixOffice9],
+    preloadImages: [],
     dependentQuestion: {
       id: '3',
       answers: ['3', '4']
@@ -207,25 +210,25 @@ export const screens = [
     name: 'question-11',
     component:  Question11,
     type: ScreenType.Question,
-    preloadImages: [bgInteract3],
+    preloadImages: [bgInteract3, cakeStart],
   },
   {
     name: 'game-3-1',
     component: PreInteract3,
     type: ScreenType.Game,
-    preloadImages: [],
+    preloadImages: [cake, finalSvg],
   },
   {
     name: 'game-3',
     component: Interactive3,
     type: ScreenType.Game,
-    preloadImages: [],
+    preloadImages: [cakeFinished, axenixOffice11, present],
   },
   {
     name: 'game-3-2',
     component: PostInteract3,
     type: ScreenType.Game,
-    preloadImages: [axenixOffice11, present],
+    preloadImages: [],
   },
   {
     name: 'question-12',
