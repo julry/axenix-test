@@ -86,7 +86,7 @@ export const Interactive1 = () => {
             type: "x,y",
             onDrag: function () { updateLine('.line-1', this.x + 24, this.y + 160, '#line-1_gradient'); },
             onRelease: function () {
-                if (this.x < 190 || this.y > -127 || this.y < -177) {
+                if (this.x < 190 || this.y > -145 || this.y < -170) {
                     reset(".draggable-1", '.line-1', 18, 160.5)
                     complete(0, false);
                 } else {
@@ -94,13 +94,13 @@ export const Interactive1 = () => {
                 }
             },
             bounds: gameRef.current,
-            liveSnap: {points: [{x: 208, y: -152.5}], radius: 25}
+            liveSnap: {points: [{x: 208, y: -152.5}], radius: 35}
         });
         Draggable.create(".draggable-2", {
             type: "x,y",
             onDrag: function () { updateLine('.line-2', this.x + 24, this.y + 109.5, '#line-2_gradient'); },
             onRelease: function () {
-                if (this.x < 190 || this.y > -26 || this.y < -76) {
+                if (this.x < 190 || this.y > -45 || this.y < -60) {
                     reset(".draggable-2", '.line-2', 18, 109.5)
                     complete(1, false);
                 } else {
@@ -108,13 +108,13 @@ export const Interactive1 = () => {
                 }
             },
             bounds: gameRef.current,
-            liveSnap: {points: [{x: 208, y: -51}], radius: 25}
+            liveSnap: {points: [{x: 208, y: -51}], radius: 35}
         });
         Draggable.create(".draggable-3", {
             type: "x,y",
             onDrag: function () { updateLine('.line-3', this.x + 24, this.y + 58.5, '#line-3_gradient'); },
             onRelease: function () {
-                if (this.x < 190 || this.y > 120 || this.y < 80) {
+                if (this.x < 190 || this.y > 110 || this.y < 95) {
                     reset(".draggable-3", '.line-3', 18, 58.5)
                     complete(2, false);
                 } else {
@@ -122,13 +122,13 @@ export const Interactive1 = () => {
                 }
             },
             bounds: gameRef.current,
-            liveSnap: {points: [{x: 208, y: 101.5}], radius: 25}
+            liveSnap: {points: [{x: 208, y: 101.5}], radius: 35}
         });
         Draggable.create(".draggable-4", {
             type: "x,y",
             onDrag: function () { updateLine('.line-4', this.x + 24, this.y + 7.8, '#line-4_gradient'); },
             onRelease: function () {
-                if (this.x < 190 || this.y > 120 || this.y < 80) {
+                if (this.x < 190 || this.y > 110 || this.y < 95) {
                     reset(".draggable-4", '.line-4', 19, 7.8);
                     complete(3, false);
                 } else {
@@ -136,7 +136,7 @@ export const Interactive1 = () => {
                 }
             },
             bounds: gameRef.current,
-            liveSnap: {points: [{x: 208, y: 101.5}], radius: 25}
+            liveSnap: {points: [{x: 208, y: 101.5}], radius: 35}
         });
     }, [])
 

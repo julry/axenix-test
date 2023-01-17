@@ -15,6 +15,7 @@ export const Intro = () => {
             }
             btnText={'Choose your Axenix fighter!'}
             onClick={next}
+            isNeedTap
         />
     );
 };

@@ -26,12 +26,12 @@ const BoldText = styled(Description)`
 `;
 
 export const LogoScreen = (props) => {
-    const {boldText, text, btnText, onClick} = props;
+    const {boldText, text, btnText, onClick, isNeedTap} = props;
     return (
         <Wrapper>
             <ContentWrapper>
                 <LogoStyled />
-                <TextButtonBlock onClick={onClick} text={btnText}>
+                <TextButtonBlock onClick={onClick} text={btnText} isNeedTap={isNeedTap}>
                     <BoldText>{boldText}</BoldText>
                     <Description>
                         {text}
