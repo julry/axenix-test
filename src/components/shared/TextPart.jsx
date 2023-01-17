@@ -9,8 +9,7 @@ import {
     Person,
     PersonWrapper
 } from './wrappers';
-import { TapIcon } from './svg/TapIcon';
-import { opacityAnim, opacityReversed, pulse } from './keyframes';
+import { TapAnimated } from './TapAnimated';
 
 
 const SecondPersonWrapper = styled(PersonWrapper)`
@@ -26,35 +25,12 @@ const ChildrenWrapper = styled.div`
   z-index: 5;
 `;
 
-const Tap = styled(TapIcon)`
+const Tap = styled(TapAnimated)`
   position: fixed;
   bottom: 8vw;
-  max-width: 87px;
-  max-height: 117px;
   left: 50%;
   transform: translateX(-50%);
-  width: 21vw;
-  height: 29vw;
   z-index: 7;
-  opacity: 0;
-  animation: ${opacityAnim} 250ms forwards;
-  
-  & .smallLine {
-    opacity: 0;
-    animation: ${opacityReversed} 2000ms infinite;
-    animation-delay: 250ms;
-  }
-
-  & .bigLine {
-    opacity: 0;
-    animation: ${opacityReversed} 2000ms infinite;
-    animation-delay: 750ms;
-  }
-  
-  & .finger {
-    animation: ${pulse} 2000ms infinite;
-    transform-origin: 50% 50%;
-  }
 `;
 
 export const TextPart = (props) => {
@@ -68,6 +44,7 @@ export const TextPart = (props) => {
     const setShowTapDelay = useCallback(() => {
         if (!isNeedTap) return;
         setTimeout(() => {setIsShowTap(true)}, 5250)
+        setTimeout(() => setIsShowTap(false), 9000);
     }, [isNeedTap]);
 
     useEffect(() => {

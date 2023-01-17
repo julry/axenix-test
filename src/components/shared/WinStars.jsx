@@ -23,15 +23,15 @@ const StarsStyled = styled(Stars)`
   
   & g {
     opacity: 0;
-    animation: ${appear} 0.55s ease-in forwards;
+    animation: ${appear} 0.45s ease-in forwards;
   }
  
   & #star2 {
-    animation-delay: 1.12s;
+    animation-delay: 0.72s;
   }
   
   & #star3 {
-    animation-delay: 0.56s;
+    animation-delay: 0.16s;
   }
 `;
 
