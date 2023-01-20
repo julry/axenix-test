@@ -35,6 +35,8 @@ const Answers = styled.div`
 `;
 
 const AnswerWrapper = styled.div`
+  display: flex;
+  align-items: center;
   padding: 11.5px;
   user-select: none;
   background: ${({chosen}) => chosen ? 'linear-gradient(57.48deg, #5F308C 8.32%, #F37022 86.03%)' : 'white'};
@@ -44,7 +46,7 @@ const AnswerWrapper = styled.div`
   color: ${({chosen}) => chosen ? 'white' : 'black'};
   margin-top: 10px;
   text-align: ${({isShort}) => isShort ? 'center' : 'left'};
-  width: ${({isShort}) => isShort ? '5.3em' : '100%'};
+  width: ${({isShort}) => isShort ? '5.6em' : '100%'};
 
   @media screen and (min-width: 640px) and (min-height: 600px){
     padding: ${({isShort}) => isShort ? '15px' : '15px 35px'};
@@ -59,11 +61,37 @@ const DescriptionSmStyled = styled(DescriptionSm)`
   max-width: 23.75em;
 `;
 
+const Number = styled.p`
+  font-size: 20px;
+  background: ${({chosen}) => chosen ? 'white' : 'linear-gradient(57.48deg, #5F308C 8.32%, #F37022 86.03%)'};
+  opacity: ${({chosen}) => chosen ? '0.3' : '1'};
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  margin-right: 2.6vw;
+  
+  @media screen and (max-width: 320px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: 1000px) {
+    font-size: 24px;
+  }
+`;
+
+
 export const QuestionWrapper = props => {
     const { question } = props;
     const { answers, updateAnswer, next, character } = useProgress();
     const [part, setPart] = useState('text');
-    const [text, setText] = useState(question?.text || '');
+    const [text, setText] = useState(question.text?.[character.sex] || question.text || '');
     const [notificationList, setNotificationList] = useState([]);
     const {photo, questionsBgs, textBg, textColor} = character;
     const background = questionsBgs[question?.id] || question?.image;
@@ -97,8 +125,9 @@ export const QuestionWrapper = props => {
 
 
     const setNext = () => {
-        if (question?.text2 && text !== question.text2) {
-            setText(question.text2);
+        const text2 = question.text2?.[character.sex] ?? question.text2;
+        if (text2 && text !== text2) {
+            setText(text2);
             return;
         }
          setPart('question');
@@ -137,21 +166,26 @@ export const QuestionWrapper = props => {
                     </DescriptionStyled>
                 </QuestionField>
                 <Answers>
-                    {question?.answers.map(answer => (
+                    {question?.answers.map((answer, i) => (
                         <AnswerWrapper
                             isShort={isShort}
                             chosen={answers[question?.id] === answer.id}
                             key={answer.id}
                             onClick={() => handleAnswerChange(answer)}
                         >
-                            <DescriptionSmStyled>{answer.text}</DescriptionSmStyled>
+                            <Number
+                                chosen={answers[question?.id] === answer.id}
+                            >
+                                {i + 1}
+                            </Number>
+                            <DescriptionSmStyled>{answer.text[character.sex] ?? answer.text}</DescriptionSmStyled>
                         </AnswerWrapper>
                     ))}
                 </Answers>
             </QuestionContent>
             {!!notificationList.length &&
                 notificationList.map((notif, id) => (
-                    <Notification id={id}>
+                    <Notification id={id} key={notif}>
                         <Description>{notif}</Description>
                     </Notification>
                 ))

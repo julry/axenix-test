@@ -10,7 +10,7 @@ import {
     pauline, paulineBedroom, paulineKitchen
 } from './constants/images';
 
-const sex = {
+export const sex = {
     Male: 'male',
     Female: 'female'
 };

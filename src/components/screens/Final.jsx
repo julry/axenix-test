@@ -8,6 +8,9 @@ import { BoldText, Description, DescriptionSm, RegularText, Title } from '../sha
 import { colors } from '../../constants/colors';
 import { QuestionMark } from '../shared/svg/QuestionMark';
 import { Modal } from '../shared/Modal';
+import { ButtonCentered } from '../shared/ButtonCentered';
+import { onLinkCopy } from '../../utils/onLinkCopy';
+import { DoneMark } from '../shared/svg/DoneMark';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -35,6 +38,7 @@ const Points = styled.div`
 `;
 
 const PointInfo = styled.div`
+  position: relative;
   margin-top: calc(var(--pointLineHeight) / 2);
 `;
 
@@ -71,12 +75,57 @@ const ModalTitle = styled(Description)`
   margin-bottom: 5px;
 `;
 
+const ButtonsContainer = styled.div`
+  margin-top: auto;
+  width: 100%;
+  padding-bottom: 6.4vw;
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 20px;
+`;
+
+const DoneMarkStyled = styled(DoneMark)`
+  height: 116px;
+  width: 116px;
+  margin-bottom: 24px;
+`;
+
+const LinkBtn = styled(Description)`
+  margin: 2.6vw auto 0;
+  border-bottom: 1px solid white;
+  width: min-content;
+`;
+
+
 export const Final = () => {
     const {points, result} = useResult();
-    const [isModal, setIsModal] = useState(false);
+    const [isModal, setIsModal] = useState({shown: false, text: ''});
+    const [isCopyModal, setIsCopyModal] = useState(false);
+
+    const onCopyButtonClick = () => {
+        onLinkCopy();
+        setIsCopyModal(true);
+        setTimeout(() => setIsCopyModal(false), 3500);
+    };
+
+    const onClickSign = (type) => {
+        const text = result.find(res => res.type === type)?.text ?? '';
+        setIsModal({shown: true, text})
+    };
+
+    const openHref = (href) => {
+        window.open(href, '_blank');
+    }
+
     return (
         <Wrapper>
-            <ContentWrapperStyled isModal={isModal}>
+            <ContentWrapperStyled isModal={isModal.shown || isCopyModal}>
                 <TitleStyled>А вот и результаты:</TitleStyled>
                 <Description>
                     {
@@ -91,21 +140,38 @@ export const Final = () => {
                             <PointName>{point.name}</PointName>
                             <PointWrapper />
                             <PointPath part={point.part}/>
+                            {!!result.filter(res => res.type === point.type).length && (
+                                <QuestionMarkStyled onClick={() => onClickSign(point.type)}/>
+                            )}
                         </PointInfo>
                     ))}
-                    <QuestionMarkStyled onClick={() => setIsModal(true)} />
                 </Points>
+                <ButtonsContainer>
+                    <ButtonCentered
+                        onClick={() => openHref('https://fut.ru/programs/axenix/')}
+                        color={colors.orange}
+                    >
+                        Подать заявку
+                    </ButtonCentered>
+                    <LinkBtn onClick={onCopyButtonClick}>Поделиться</LinkBtn>
+                </ButtonsContainer>
             </ContentWrapperStyled>
             <BackgroundWrapper>
                 <Background src={gradientBg} alt={''}/>
             </BackgroundWrapper>
-            {isModal && <Modal close={() => setIsModal(false)}>
+            {isModal.shown && <Modal close={() => setIsModal({shown: false, text: ''})}>
                 <ModalTitle>
                     Совет дня:
                 </ModalTitle>
                 <DescriptionSm>
-                    {result?.text}
+                    {isModal?.text}
                 </DescriptionSm>
+            </Modal>}
+            {isCopyModal && <Modal>
+                <ModalContent>
+                    <DoneMarkStyled />
+                    <Description>Ссылка скопирована</Description>
+                </ModalContent>
             </Modal>}
         </Wrapper>
     )

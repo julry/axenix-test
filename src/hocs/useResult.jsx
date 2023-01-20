@@ -7,7 +7,7 @@ const DEFAULT_RESULT = AnswerType.communication;
 const DEFAULT_RESULT_POINTS = {
     [AnswerType.communication]: 0,
     [AnswerType.career]: 0,
-    [AnswerType.caring]: 0,
+    [AnswerType.caring]: 4,
     [AnswerType.leadership]: 0,
     [AnswerType.flexibility]: 0,
 };
@@ -30,10 +30,10 @@ export const useResult = () => {
     const detailedPoints = getPointsDetailInfo(resultPoints);
     const minPoints = Math.min(...detailedPoints.map(points => points.part));
     const finalTypes = detailedPoints.filter(points => points.part === minPoints);
-    let resultType = finalTypes[0]?.type;
+    const result = finalTypes.map((final) => resultTypes[final.type]);
 
     return ({
         points: detailedPoints.length ? detailedPoints : getPointsDetailInfo(DEFAULT_RESULT_POINTS),
-        result: resultTypes[resultType || DEFAULT_RESULT]
+        result: result.length ? result : [resultTypes[DEFAULT_RESULT]]
     });
 };
