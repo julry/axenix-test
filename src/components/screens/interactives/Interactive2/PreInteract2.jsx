@@ -7,6 +7,7 @@ import { TextBlock } from '../../../shared/TextBlock';
 import puzzleBoard from './svgs/puzzleBoard.svg';
 import { Board } from './Board';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
+import { sex } from '../../../../characters.config';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -54,7 +55,7 @@ export const PreInteract2 = () => {
             </BackgroundWrapper>
             <ContentWrapper>
                 <TextBlockStyled textBg={character.textBg} textColor={character.textColor}>
-                    {'Ты решил записаться на курсы\nанглийского, но забыл пароль\nот учетной записи :('}
+                    {`Ты решил${character.sex === sex.Male ? '' : 'а'} записаться на курсы\nанглийского, но забыл${character.sex === sex.Male ? '' : 'а'} пароль\nот учетной записи :(`}
                 </TextBlockStyled>
                 <PuzzlesImgWrapper>
                     <BoardStyled />
