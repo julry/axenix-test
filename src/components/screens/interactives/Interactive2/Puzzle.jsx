@@ -1,8 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { useDrag } from 'react-dnd';
+import { useDrag, useDragLayer } from 'react-dnd';
 import { mergeRefs } from 'react-merge-refs';
-import { usePreview } from 'react-dnd-multi-backend';
 
 const PuzzleStyled = styled.div`
   ${({ styles }) => styles};
@@ -18,14 +17,13 @@ const StyledPuzzlePreview = styled(PuzzleStyled)`
 `;
 
 export const Puzzle = (props) => {
-    const { puzzle, onDragStart } = props;
+    const { puzzle, isWin } = props;
     const {id, position, styles} = puzzle;
     const dragRef = useRef();
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: 'PUZZLE',
         item: () => {
-            onDragStart?.();
             return { id, position, styles };
         },
         collect: monitor => ({
@@ -34,14 +32,29 @@ export const Puzzle = (props) => {
     }), [id]);
 
     const PuzzlePreview = (props) => {
-        const { display, style } = usePreview();
+        const {offset} = useDragLayer(monitor => ({
+                offset: monitor.getClientOffset(),
+        }));
 
-        if (!display) {
+        if (!isDragging || offset === null) {
             return null;
         }
 
-        return <StyledPuzzlePreview style={style} {...props} />;
+        const x = (offset?.x - 60) + 'px';
+        const y = (offset?.y - 60) + 'px';
+
+        const style = {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            pointerEvents: 'none',
+            transform:`translate(${x}, ${y})`,
+            WebkitTransform: `translate(${x}, ${y})`
+        }
+
+        return <StyledPuzzlePreview style={style} {...props}/>;
     };
+
 
     if (isDragging) {
         return <PuzzlePreview styles={styles}/>;
@@ -50,8 +63,7 @@ export const Puzzle = (props) => {
     return (
         <PuzzleStyled
             styles={styles}
-            rowInd={props.rowInd}
-            ref={mergeRefs([drag, dragRef])}
+            ref={isWin ? null : mergeRefs([drag, dragRef])}
         />
     );
 };

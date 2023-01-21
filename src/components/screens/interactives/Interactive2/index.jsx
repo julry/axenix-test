@@ -6,18 +6,17 @@ import { MouseTransition, DndProvider, TouchTransition } from 'react-dnd-multi-b
 import { useProgress } from '../../../../hooks/useProgress';
 import { shuffle } from '../../../../utils/shuffle';
 import { Board } from './Board';
-import { Puzzle } from './Puzzle';
 import topLeftPuzzle from './svgs/topLeftPuzzle.svg';
 import topRightPuzzle from './svgs/topRightPuzzle.svg';
 import bottomRightPuzzle from './svgs/bottomRightPuzzle.svg';
 import bottomLeftPuzzle from './svgs/bottomLeftPuzzle.svg';
-import { colors } from '../../../../constants/colors';
 import { Background, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
 import { woodBg } from '../../../../constants/images';
 import { WinStars } from '../../../shared/WinStars';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { opacityAnim } from '../../../shared/keyframes';
 import boardWin from './svgs/boardWin.svg';
+import { PuzzlesRow } from './PuzzlesRow';
 
 const PUZZLES_ROW_AMOUNT = 2;
 const PUZZLES_COLUMN_AMOUNT = 2;
@@ -25,16 +24,6 @@ const PUZZLES_COLUMN_AMOUNT = 2;
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const PuzzlesRow = styled.div`
-  display: flex;
-  position: relative;
-  max-height: 212px;
-  background: ${colors.orange};
-  flex-shrink: 1;
-  flex-grow: 1;
-  flex-wrap: wrap;
 `;
 
 const appear = keyframes`
@@ -83,9 +72,19 @@ const BoardWin = styled(Board)`
 const makeArray = (amount, mapFn) => Array.from({length: amount}, mapFn);
 
 const puzzlesDetails = [
-    [{width: '139px', height: '109px', background: `url(${topLeftPuzzle})`}, {width: '109px', height: '139px', background: `url(${topRightPuzzle})`}],
-    [{width: '139px', height: '139px', top: 'auto', bottom: '-0.5px', background: `url(${bottomLeftPuzzle})`}, {width: '109px', height: '109px', background: `url(${bottomRightPuzzle})`}]
-]
+    [{width: '139px', height: '109px', background: `url(${topLeftPuzzle})`}, {
+        width: '109px',
+        height: '139px',
+        background: `url(${topRightPuzzle})`
+    }],
+    [{
+        width: '139px',
+        height: '139px',
+        top: 'auto',
+        bottom: '-0.5px',
+        background: `url(${bottomLeftPuzzle})`
+    }, {width: '109px', height: '109px', background: `url(${bottomRightPuzzle})`}]
+];
 
 const fillPuzzlesArray = (rowInd, colInd) => (
     {
@@ -99,12 +98,6 @@ const fillPuzzlesArray = (rowInd, colInd) => (
         }
     }
 );
-
-const PuzzleWrapper = styled.div`
-  position: absolute;
-  ${({ styles }) => styles};
-`;
-
 
 const mapInitialPosition = (x, y) => {
     const positions = {
@@ -168,7 +161,7 @@ export const Interactive2 = () => {
     }, [droppedPuzzles]);
 
     const checkWinPuzzle = () => {
-        if (!puzzles.length || droppedPuzzles.length !== puzzles.flat().length)  return;
+        if (!puzzles.length || droppedPuzzles.length !== puzzles.flat().length) return;
         return puzzles.flat()
             .filter(puzzle => droppedPuzzles
                 .find(item => {
@@ -176,17 +169,17 @@ export const Interactive2 = () => {
                 })
             )
             .length === puzzles.flat().length;
-    }
+    };
 
     const hidePuzzles = (id, dropped) => {
         setShownPuzzles((shown) => {
             const puzzle = shown.find(item => item.id === id);
             const puzzleId = shown.indexOf(puzzle);
             const newShown = [...shown];
-            newShown[puzzleId] = {...puzzle, dropped}
+            newShown[puzzleId] = {...puzzle, dropped};
             return newShown;
-        })
-    }
+        });
+    };
 
     const getDroppedPuzzles = (dropped, puzzle, droppedPuzzle) => {
         const {position, itemPosition} = droppedPuzzle;
@@ -199,10 +192,10 @@ export const Interactive2 = () => {
             const positionDropped = newDropped
                 .filter(item => checkSamePosition(item.position, position));
 
-            if (positionDropped.length > 1){
+            if (positionDropped.length > 1) {
                 const replacedPuz = positionDropped.find(item => item.id !== droppedPuzzle.id);
                 const replacedPuzId = newDropped.indexOf(replacedPuz);
-                newDropped[replacedPuzId] = {...replacedPuz, position: itemPosition}
+                newDropped[replacedPuzId] = {...replacedPuz, position: itemPosition};
             }
 
             return newDropped;
@@ -210,7 +203,7 @@ export const Interactive2 = () => {
             const positionDropped = dropped
                 .find(item => checkSamePosition(item.position, position));
 
-            if (!!positionDropped){
+            if (!!positionDropped) {
                 const replacedPuzId = positionDropped.id;
                 hidePuzzles(replacedPuzId, false);
                 setPuzzles((puzArray) => {
@@ -218,20 +211,20 @@ export const Interactive2 = () => {
                     return setPuzzleDropped(puzArray, removedPuzzlePosition, false);
                 });
                 const replacedPuzDropId = newDropped.indexOf(positionDropped);
-                newDropped.splice(replacedPuzDropId, 1)
+                newDropped.splice(replacedPuzDropId, 1);
 
                 return [...newDropped, {...puzzle, position}];
             }
 
             return [...dropped, {...puzzle, position}];
         }
-    }
+    };
 
     const setPuzzleDropped = (puzzlesArr, itemPosition, dropped = true) => {
         const newPuzzles = [...puzzlesArr];
         newPuzzles[itemPosition[0]][itemPosition[1]] = {...newPuzzles[itemPosition[0]][itemPosition[1]], dropped};
         return newPuzzles;
-    }
+    };
 
     const onDrop = (id, itemPosition, position) => {
         if (!id) return;
@@ -241,37 +234,45 @@ export const Interactive2 = () => {
         hidePuzzles(puzzle.id, true);
         setPuzzles((puzArray) => setPuzzleDropped(puzArray, puzzle.position));
         setDroppedPuzzles((dropped) => getDroppedPuzzles(dropped, puzzle, {id, position, itemPosition}));
-    }
+    };
+
+    const onRemove = (puzzle) => {
+        hidePuzzles(puzzle.id, false);
+        setDroppedPuzzles((dropped) => {
+            const puzzleId = dropped.findIndex(puzz => puzz.id === puzzle.id);
+            if (puzzleId < 0) return dropped;
+            const newDropped = [...dropped];
+            newDropped.splice(puzzleId, 1);
+            return newDropped;
+        });
+    };
 
     return (
         <Wrapper>
             <BackgroundWrapper>
-                <Background src={woodBg} alt={''} />
+                <Background src={woodBg} alt={''}/>
             </BackgroundWrapper>
             <ContentWrapper>
-                {isWin ? (
-                    <>
+                <DndProvider options={HTML5toTouch}>
+                    {isWin && (
                         <WinStarsWrapper>
-                            <WinStarsStyled />
+                            <WinStarsStyled/>
                         </WinStarsWrapper>
-                        <BoardWin />
-                        <ButtonCenteredStyled onClick={next}>Продолжить</ButtonCenteredStyled>
-                    </>
-                ) : (
-                        <DndProvider options={HTML5toTouch}>
-                            <Board puzzles={puzzles} onPuzzleDrop={onDrop} droppedPuzzles={droppedPuzzles}/>
-                            <PuzzlesRow >
-                                {shownPuzzles.filter(puz=> !puz.dropped).map((puzzle) => (
-                                    <PuzzleWrapper key={puzzle.id} styles={mapInitialPosition(...puzzle.position)}>
-                                        <Puzzle
-                                            puzzle={puzzle}
-                                        />
-                                    </PuzzleWrapper>
-                                ))}
-                            </PuzzlesRow>
-                        </DndProvider>
-                    )
-                }
+                    )}
+                    <Board
+                        isWin={isWin}
+                        puzzles={puzzles}
+                        onPuzzleDrop={onDrop}
+                        droppedPuzzles={droppedPuzzles}
+                    />
+                    {isWin ? <ButtonCenteredStyled onClick={next}>Продолжить</ButtonCenteredStyled>
+                        : <PuzzlesRow
+                            shownPuzzles={shownPuzzles}
+                            mapInitialPosition={mapInitialPosition}
+                            onDrop={onRemove}
+                        />
+                    }
+                </DndProvider>
             </ContentWrapper>
         </Wrapper>
     );

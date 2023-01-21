@@ -16,7 +16,7 @@ const PuzzlePlaceStyled = styled.div`
   }
 `;
 export const PuzzlePlace = (props) => {
-    const {puzzle, styles, droppedPuzzles, onPuzzleDrop, rowInd} = props;
+    const {puzzle, styles, droppedPuzzles, onPuzzleDrop, isWin} = props;
 
     const [{}, drop] = useDrop(() => ({
         accept: 'PUZZLE',
@@ -36,7 +36,7 @@ export const PuzzlePlace = (props) => {
             ref={drop}
             styles={styles}
         >
-            {droppedPuzzle && <Puzzle puzzle={droppedPuzzle} rowInd={rowInd}/>}
+            {droppedPuzzle && <Puzzle puzzle={droppedPuzzle} isWin={isWin}/>}
         </PuzzlePlaceStyled>
     );
 };

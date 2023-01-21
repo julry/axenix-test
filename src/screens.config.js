@@ -65,6 +65,7 @@ import {
 import box_open from './components/screens/interactives/Interactive1/svg/box_open.svg';
 import puzzleBoard from './components/screens/interactives/Interactive2/svgs/puzzleBoard.svg';
 import board from './components/screens/interactives/Interactive2/svgs/board.svg';
+import boardWin from './components/screens/interactives/Interactive2/svgs/boardWin.svg';
 import cakeFinished from './components/screens/interactives/Interactive3/svg/cakeFinished.svg';
 import cake from './components/screens/interactives/Interactive3/svg/cake.svg';
 import cakeStart from './components/screens/interactives/Interactive3/svg/cakeStart.svg';
@@ -138,7 +139,7 @@ export const screens = [
     name: 'question-6',
     component: Question6,
     type: ScreenType.Question,
-    preloadImages: [woodBg, puzzleBoard, board],
+    preloadImages: [woodBg, puzzleBoard, board, boardWin],
   },
   {
     name: 'game-2-1',
