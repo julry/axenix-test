@@ -36,7 +36,7 @@ export const Puzzle = (props) => {
                 offset: monitor.getClientOffset(),
         }));
 
-        if (!isDragging || offset === null) {
+        if (!isDragging || !offset || !offset?.x || !offset?.y) {
             return null;
         }
 
