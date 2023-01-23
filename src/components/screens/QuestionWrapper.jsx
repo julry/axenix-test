@@ -50,6 +50,7 @@ const AnswerWrapper = styled.div`
 
   @media screen and (min-width: 640px) and (min-height: 600px){
     padding: ${({isShort}) => isShort ? '15px' : '15px 35px'};
+    width: ${({isShort}) => isShort ? '7.6em' : '100%'};
   }
 `;
 
