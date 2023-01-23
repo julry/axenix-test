@@ -49,16 +49,9 @@ const AnswerWrapper = styled.div`
   width: ${({isShort}) => isShort ? '5.6em' : '100%'};
 
   @media screen and (min-width: 640px) and (min-height: 600px){
-    padding: ${({isShort}) => isShort ? '15px' : '15px 35px'};
+    padding: ${({isShort}) => isShort ? '15px' : '15px 25px'};
+    width: ${({isShort}) => isShort ? '7.6em' : '100%'};
   }
-`;
-
-const DescriptionStyled = styled(Description)`
-  max-width: 20.625em;
-`;
-
-const DescriptionSmStyled = styled(DescriptionSm)`
-  max-width: 23.75em;
 `;
 
 const Number = styled.p`
@@ -161,9 +154,9 @@ export const QuestionWrapper = props => {
             <QuestionContent isShort={isShort}>
                 {props.children}
                 <QuestionField color={textBg} textColor={textColor}>
-                    <DescriptionStyled>
+                    <Description>
                         {question?.question}
-                    </DescriptionStyled>
+                    </Description>
                 </QuestionField>
                 <Answers>
                     {question?.answers.map((answer, i) => (
@@ -178,7 +171,7 @@ export const QuestionWrapper = props => {
                             >
                                 {i + 1}
                             </Number>
-                            <DescriptionSmStyled>{answer.text[character.sex] ?? answer.text}</DescriptionSmStyled>
+                            <DescriptionSm>{answer.text[character.sex] ?? answer.text}</DescriptionSm>
                         </AnswerWrapper>
                     ))}
                 </Answers>

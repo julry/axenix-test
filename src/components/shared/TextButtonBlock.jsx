@@ -33,16 +33,24 @@ const Tap = styled(TapAnimated)`
 export const TextButtonBlock = (props) => {
     const {isNeedTap, text, onClick} = props;
     const [isShowTap, setIsShowTap] = useState(false);
+    const [isMounted, setIsMounted] = useState(true);
 
     const setShowTapDelay = useCallback(() => {
         if (!isNeedTap) return;
-        setTimeout(() => {setIsShowTap(true)}, 1250);
-        setTimeout(() => setIsShowTap(false), 5000);
+        setTimeout(() => {
+            if (isMounted) setIsShowTap(true);
+        }, 1250);
+        setTimeout(() => {
+            if (isMounted) setIsShowTap(false);
+        }, 5000);
     }, [isNeedTap]);
 
     useEffect(() => {
         setIsShowTap(false);
         setShowTapDelay();
+        return () => {
+            setIsMounted(false);
+        }
     }, []);
 
     return (
