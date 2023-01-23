@@ -11,7 +11,6 @@ import {
 } from './wrappers';
 import { TapAnimated } from './TapAnimated';
 
-
 const SecondPersonWrapper = styled(PersonWrapper)`
   left: auto;
   right: 0;
@@ -35,6 +34,7 @@ const Tap = styled(TapAnimated)`
 
 export const TextPart = (props) => {
     const [isShowTap, setIsShowTap] = useState(false);
+    const [isMounted, setIsMounted] = useState(true);
     const {
         background, isScaled, person, personHeight, onClick, personWidth, isBlurred, secondPerson = {}, isNeedTap = true
     } = props;
@@ -43,13 +43,21 @@ export const TextPart = (props) => {
 
     const setShowTapDelay = useCallback(() => {
         if (!isNeedTap) return;
-        setTimeout(() => {setIsShowTap(true)}, 5250)
-        setTimeout(() => setIsShowTap(false), 9000);
+        setTimeout(() => {
+            if (isMounted) setIsShowTap(true);
+        }, 5250);
+        setTimeout(() => {
+            if (isMounted) setIsShowTap(false);
+        }, 9000);
     }, [isNeedTap]);
 
     useEffect(() => {
+        setIsMounted(true);
         setIsShowTap(false);
         setShowTapDelay();
+        return () => {
+            setIsMounted(false);
+        }
     }, [props]);
 
     return (
@@ -74,5 +82,5 @@ export const TextPart = (props) => {
                 {isShowTap && <Tap/>}
             </ContentWrapper>
         </>
-    )
-}
+    );
+};

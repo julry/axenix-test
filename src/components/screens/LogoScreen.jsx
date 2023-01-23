@@ -34,7 +34,7 @@ export const LogoScreen = (props) => {
                 <TextButtonBlock onClick={onClick} text={btnText} isNeedTap={isNeedTap}>
                     <BoldText>{boldText}</BoldText>
                     <Description>
-                        {text}
+                        {typeof (text) === 'function' ? text?.() : text}
                     </Description>
                 </TextButtonBlock>
             </ContentWrapper>
@@ -42,5 +42,5 @@ export const LogoScreen = (props) => {
                 <Background src={gradientBg} alt={''}/>
             </BackgroundWrapper>
         </Wrapper>
-    )
-}
+    );
+};

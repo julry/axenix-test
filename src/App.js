@@ -28,6 +28,10 @@ const ComponentWrapper = styled.div`
   @media screen and (max-width: 330px) {
     white-space: unset;
   }
+
+  @media screen and (min-width: 395px) {
+    white-space: unset;
+  }
 `;
 
 const MobileViewLandscaped = styled.div`

@@ -53,14 +53,6 @@ const AnswerWrapper = styled.div`
   }
 `;
 
-const DescriptionStyled = styled(Description)`
-  max-width: 20.625em;
-`;
-
-const DescriptionSmStyled = styled(DescriptionSm)`
-  max-width: 23.75em;
-`;
-
 const Number = styled.p`
   font-size: 20px;
   background: ${({chosen}) => chosen ? 'white' : 'linear-gradient(57.48deg, #5F308C 8.32%, #F37022 86.03%)'};
@@ -161,9 +153,9 @@ export const QuestionWrapper = props => {
             <QuestionContent isShort={isShort}>
                 {props.children}
                 <QuestionField color={textBg} textColor={textColor}>
-                    <DescriptionStyled>
+                    <Description>
                         {question?.question}
-                    </DescriptionStyled>
+                    </Description>
                 </QuestionField>
                 <Answers>
                     {question?.answers.map((answer, i) => (
@@ -178,7 +170,7 @@ export const QuestionWrapper = props => {
                             >
                                 {i + 1}
                             </Number>
-                            <DescriptionSmStyled>{answer.text[character.sex] ?? answer.text}</DescriptionSmStyled>
+                            <DescriptionSm>{answer.text[character.sex] ?? answer.text}</DescriptionSm>
                         </AnswerWrapper>
                     ))}
                 </Answers>
