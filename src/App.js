@@ -83,8 +83,8 @@ export function App() {
 
   useEffect(() => {
     let preloadImages = screen?.preloadImages;
-    if (!!screen?.preloadImages.all) {
-      preloadImages = screen?.preloadImages[character.id] ?? screen?.preloadImages.all;
+    if (!!screen?.preloadImages?.all) {
+      preloadImages = screen?.preloadImages?.[character.id] ?? screen?.preloadImages?.all;
     }
     const clears = preloadImages && preloadImages.map(img => preloadImage(img));
     return () => clears && clears.forEach(clear => clear());
