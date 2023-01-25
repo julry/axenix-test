@@ -12,5 +12,5 @@ const QuestionWrapperStyled = styled(QuestionWrapper)`
 `;
 
 export const Question1 = () => {
-    return <QuestionWrapperStyled question={getQuestionById('1')} />
+    return <QuestionWrapperStyled question={getQuestionById('1')} isShortTimeout/>
 }

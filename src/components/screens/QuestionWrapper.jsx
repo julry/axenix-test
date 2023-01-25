@@ -81,7 +81,7 @@ const Number = styled.p`
 
 
 export const QuestionWrapper = props => {
-    const { question } = props;
+    const { question, isShortTimeout } = props;
     const { answers, updateAnswer, next, character } = useProgress();
     const [part, setPart] = useState('text');
     const [text, setText] = useState(question.text?.[character.sex] || question.text || '');
@@ -132,6 +132,7 @@ export const QuestionWrapper = props => {
             person={!noCharacterText && photo}
             personWidth={character.width}
             isScaled={true}
+            isShortTimeout={isShortTimeout}
             personHeight={character.height}
             secondPerson={question.anotherCharacter}
             onClick={setNext}

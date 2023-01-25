@@ -36,19 +36,21 @@ export const TextPart = (props) => {
     const [isShowTap, setIsShowTap] = useState(false);
     const [isMounted, setIsMounted] = useState(true);
     const {
-        background, isScaled, person, personHeight, onClick, personWidth, isBlurred, secondPerson = {}, isNeedTap = true
+        background, isScaled, person, personHeight, onClick, personWidth, isBlurred, isShortTimeout,
+        secondPerson = {}, isNeedTap = true
     } = props;
     const {photo, width, height} = secondPerson;
     const BackgroundComponent = isScaled ? BackgroundScaled : isBlurred ? BackgroundBlurred : Background;
 
     const setShowTapDelay = useCallback(() => {
         if (!isNeedTap) return;
+        const timeOutAddTime = isShortTimeout ? 0 : 2000;
         setTimeout(() => {
             if (isMounted) setIsShowTap(true);
-        }, 5250);
+        }, 5250 + timeOutAddTime);
         setTimeout(() => {
             if (isMounted) setIsShowTap(false);
-        }, 9000);
+        }, 9000 + timeOutAddTime);
     }, [isNeedTap]);
 
     useEffect(() => {
