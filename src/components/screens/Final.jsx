@@ -11,6 +11,7 @@ import { Modal } from '../shared/Modal';
 import { ButtonCentered } from '../shared/ButtonCentered';
 import { onLinkCopy } from '../../utils/onLinkCopy';
 import { DoneMark } from '../shared/svg/DoneMark';
+import { useProgress } from '../../hooks/useProgress';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -104,6 +105,7 @@ const LinkBtn = styled(Description)`
 
 
 export const Final = () => {
+    const {character} = useProgress();
     const {points, result} = useResult();
     const [isModal, setIsModal] = useState({shown: false, text: ''});
     const [isCopyModal, setIsCopyModal] = useState(false);
@@ -115,7 +117,7 @@ export const Final = () => {
     };
 
     const onClickSign = (type) => {
-        const text = result.find(res => res.type === type)?.text ?? '';
+        const text = result.find(res => res.type === type)?.text?.[character?.sex] ?? '';
         setIsModal({shown: true, text})
     };
 
