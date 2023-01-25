@@ -72,7 +72,7 @@ const OrientationIcon = styled(Orientation)`
 export function App() {
   const [height, setHeight] = useState('100vh');
   const progress = useProgressInit();
-  const { screen, updateProgress } = progress;
+  const { screen, updateProgress, character } = progress;
 
   const Component = screen?.component || (() => null);
   const wrapperRef = useRef(null);
@@ -82,7 +82,10 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    const preloadImages = screen?.preloadImages;
+    let preloadImages = screen?.preloadImages;
+    if (!!screen?.preloadImages.all) {
+      preloadImages = screen?.preloadImages[character.id] ?? screen?.preloadImages.all;
+    }
     const clears = preloadImages && preloadImages.map(img => preloadImage(img));
     return () => clears && clears.forEach(clear => clear());
   }, [screen]);
