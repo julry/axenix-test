@@ -9,7 +9,6 @@ const ButtonStyled = styled.button`
   width: 251px;
   height: 41px;
   color: white;
-  font-family: 'Montserrat', serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

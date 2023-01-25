@@ -1,15 +1,7 @@
 import styled from 'styled-components';
 
 export const BoldText = styled.p`
-  font-weight: 700;
-`;
-
-export const MediumText = styled.p`
-  font-weight: 500;
-`;
-
-export const LightText = styled.p`
-  font-weight: 300;
+  font-weight: 600;
 `;
 
 export const RegularText = styled.p`
@@ -17,49 +9,49 @@ export const RegularText = styled.p`
 `;
 
 export const Title = styled(BoldText)`
-  font-size: 21px;
+  font-size: 20px;
   
   @media screen and (max-width: 330px) {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 19px;
+    font-size: 18px;
   }
   
   @media screen and (min-width: 1000px) {
-    font-size: 20px;
+    font-size: 19px;
   }
 `;
 
 export const Description = styled(RegularText)`
-  font-size: 16px;
+  font-size: 15px;
   
   @media screen and (max-width: 320px) {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 17px;
+    font-size: 16px;
   }
   
   @media screen and (min-width: 1000px) {
-    font-size: 18px;
+    font-size: 17px;
   }
 `;
 
 export const DescriptionSm = styled(RegularText)`
-  font-size: 14px;
+  font-size: 13px;
 
   @media screen and (max-width: 320px) {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   @media screen and (min-width: 1000px) {
-    font-size: 16px;
+    font-size: 15px;
   }
 `;
