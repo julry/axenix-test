@@ -2,12 +2,12 @@ import { colors } from './constants/colors';
 import {
     alice,
     aliceBedroom,
-    aliceKitchen,
+    femaleKitchen,
     andrew,
-    andrewBedroom, andrewKitchen,
-    denis, denisBedroom, denisKitchen,
+    andrewBedroom, maleKitchen,
+    denis, denisBedroom,
     femaleWardrobe, maleWardrobe,
-    pauline, paulineBedroom, paulineKitchen
+    pauline, paulineBedroom
 } from './constants/images';
 
 export const sex = {
@@ -28,7 +28,7 @@ export const characters = [
         photo: alice,
         questionsBgs: {
             '1': aliceBedroom,
-            '2': aliceKitchen,
+            '2': femaleKitchen,
             '3': femaleWardrobe
         }
     },
@@ -44,7 +44,7 @@ export const characters = [
         photo: andrew,
         questionsBgs: {
             '1': andrewBedroom,
-            '2': andrewKitchen,
+            '2': maleKitchen,
             '3': maleWardrobe
         }
     },
@@ -60,7 +60,7 @@ export const characters = [
         photo: pauline,
         questionsBgs: {
             '1': paulineBedroom,
-            '2': paulineKitchen,
+            '2': femaleKitchen,
             '3': femaleWardrobe
         }
     },
@@ -76,7 +76,7 @@ export const characters = [
         photo: denis,
         questionsBgs: {
             '1': denisBedroom,
-            '2': denisKitchen,
+            '2': maleKitchen,
             '3': maleWardrobe
         }
     }
