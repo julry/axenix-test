@@ -36,10 +36,8 @@ import {
   denisBedroom,
   paulineBedroom,
   andrewBedroom,
-  aliceKitchen,
-  denisKitchen,
-  paulineKitchen,
-  andrewKitchen,
+  femaleKitchen,
+  maleKitchen,
   femaleWardrobe,
   maleWardrobe,
   axenixFirst,
@@ -97,11 +95,11 @@ export const screens = [
     component: Question1,
     type: ScreenType.Question,
     preloadImages: {
-      '1': [femaleWardrobe, aliceKitchen],
-      '2': [maleWardrobe, andrewKitchen],
-      '3': [femaleWardrobe, paulineKitchen],
-      '4': [maleWardrobe, denisKitchen],
-      'all': [femaleWardrobe, maleWardrobe, aliceKitchen, denisKitchen, paulineKitchen, andrewKitchen]
+      '1': [femaleWardrobe, femaleKitchen],
+      '2': [maleWardrobe, maleKitchen],
+      '3': [femaleWardrobe, femaleKitchen],
+      '4': [maleWardrobe, maleKitchen],
+      'all': [femaleWardrobe, maleWardrobe, femaleKitchen, maleKitchen]
     }
   },
   {

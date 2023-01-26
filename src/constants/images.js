@@ -11,10 +11,8 @@ import aliceBedroom from '../static/images/alice-bedroom.png';
 import denisBedroom from '../static/images/denis-bedroom.png';
 import paulineBedroom from '../static/images/pauline-bedroom.png';
 import andrewBedroom from '../static/images/andrew-bedroom.png';
-import aliceKitchen from '../static/images/alice-kitchen.png';
-import denisKitchen from '../static/images/denis-kitchen.png';
-import paulineKitchen from '../static/images/pauline-kitchen.png';
-import andrewKitchen from '../static/images/andrew-kitchen.png';
+import femaleKitchen from '../static/images/female-kitchen.png';
+import maleKitchen from '../static/images/male-kitchen.png';
 import femaleWardrobe from '../static/images/female-wardrobe.png';
 import maleWardrobe from '../static/images/male-wardrobe.png';
 import bus from '../static/images/bus.png';
@@ -49,10 +47,8 @@ export {
     denisBedroom,
     paulineBedroom,
     andrewBedroom,
-    aliceKitchen,
-    denisKitchen,
-    paulineKitchen,
-    andrewKitchen,
+    femaleKitchen,
+    maleKitchen,
     femaleWardrobe,
     maleWardrobe,
     axenixFirst,
