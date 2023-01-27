@@ -114,7 +114,7 @@ export const QuestionWrapper = props => {
         setNotificationList(notifList);
         let timeout = 400 + (notifList.length * 650);
         if (question?.id === '2') {
-            timeout = 550 + (notifList.length * 600);
+            timeout = 700 + (notifList.length * 500);
         }
         onNext(timeout);
     }, [question, updateAnswer]);
