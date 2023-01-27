@@ -135,11 +135,10 @@ export const QuestionWrapper = props => {
             isShortTimeout={isShortTimeout}
             personHeight={character.height}
             secondPerson={question.anotherCharacter}
-            onClick={setNext}
             className={props.className}
         >
             <TextBlockWrapper styles={textBlockStyles}>
-                <TextBlock textBg={textBg} textColor={textColor} hasNextPart>
+                <TextBlock textBg={textBg} textColor={textColor} onClick={setNext} hasNextPart>
                     {text}
                 </TextBlock>
             </TextBlockWrapper>

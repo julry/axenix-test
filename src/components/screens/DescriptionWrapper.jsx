@@ -1,6 +1,5 @@
 import React from 'react';
 import { TextPart } from '../shared/TextPart';
-import { axenixOffice5 } from '../../constants/images';
 import { TextBlockWrapper } from './QuestionWrapper';
 import { TextBlock } from '../shared/TextBlock';
 
@@ -15,10 +14,9 @@ export const DescriptionWrapper = (props) => {
             isScaled={false}
             personHeight={height}
             secondPerson={secondPerson}
-            onClick={onNext}
         >
             <TextBlockWrapper>
-                <TextBlock textBg={textBg} textColor={textColor} hasNextPart={hasNextPart}>
+                <TextBlock textBg={textBg} textColor={textColor} hasNextPart={hasNextPart} onClick={onNext}>
                     {text}
                 </TextBlock>
             </TextBlockWrapper>

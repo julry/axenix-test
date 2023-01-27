@@ -9,6 +9,7 @@ import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../s
 import box_open from './svg/box_open.svg'
 import { WinStars } from '../../../shared/WinStars';
 import { bgInteract1 } from '../../../../constants/images';
+import { TextBlock } from '../../../shared/TextBlock';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -74,10 +75,25 @@ export const WinStarsStyled = styled(WinStars)`
 `;
 
 
+const TextBlockStyled = styled(TextBlock)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  opacity: ${({finished}) => 1 - +finished};
+  transition: opacity 0.35s ease-in;
+  @media screen and (min-width: 700px) {
+    top: 10%;
+    left: 15%;
+  }
+`;
+
 export const Interactive1 = () => {
     const [completed, setCompleted] = useState([]);
     const [finished, setFinished] = useState(false);
-    const {next} = useProgress();
+    const {character, next} = useProgress();
+    const {textBg, textColor} = character;
+
     gsap.registerPlugin(Draggable);
     const gameRef = useRef();
 
@@ -224,6 +240,12 @@ export const Interactive1 = () => {
                             <ButtonStyled onClick={next}>Продолжить</ButtonStyled>
                         </Dump>
                     )}
+                    <TextBlockStyled textBg={textBg} textColor={textColor} finished={finished}>
+                        {
+                            'Тяни провода из левой части \n' +
+                            'в правую, соединяя их по цветам.'
+                        }
+                    </TextBlockStyled>
                     <WrapperGame ref={gameRef}>
                         <LinesGame />
                     </WrapperGame>

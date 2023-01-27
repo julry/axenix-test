@@ -14,7 +14,10 @@ import { sex } from './characters.config';
 export const questions = [
     {
         id: '1',
-        text: 'Утро понедельника.\nНаступил твой первый\nрабочий день в Axenix',
+        text: 'Утро понедельника. \n' +
+            'Наступил твой первый \n' +
+            'рабочий день в Axenix. \n' +
+            'Тебя ждут в офисе к 10.',
         question: 'Я проснусь...',
         noCharacterText: true,
         characterQuestion: true,
