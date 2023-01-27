@@ -112,7 +112,10 @@ export const QuestionWrapper = props => {
             .map(key => type[key].map(t => getNotifText(key, AnswerTypeRusNotif[t][key])))
             .flat();
         setNotificationList(notifList);
-        const timeout = 400 + (notifList.length * 650);
+        let timeout = 400 + (notifList.length * 650);
+        if (question?.id === '2') {
+            timeout = 550 + (notifList.length * 600);
+        }
         onNext(timeout);
     }, [question, updateAnswer]);
 

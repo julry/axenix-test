@@ -62,7 +62,7 @@ export const questions = [
                 id: '1',
                 text: 'Почитаю последние новости\nо консалтинге, чтобы сразу поделиться\nв чате с новыми коллегами',
                 type: {
-                    positive: [AnswerType.communication],
+                    positive: [AnswerType.communication, AnswerType.flexibility, AnswerType.career],
                     negative: []
                 },
             },
@@ -103,7 +103,7 @@ export const questions = [
                 text: 'Выберу брючный костюм: несмотря \n' +
                     'на отсутствие в компании строго дресс-кода, я хочу выглядеть презентабельно',
                 type: {
-                    positive: [],
+                    positive: [ AnswerType.caring, AnswerType.flexibility, AnswerType.career],
                     negative: []
                 },
             },
@@ -113,7 +113,7 @@ export const questions = [
                     'и клетчатой рубашке: просто, стильно \n' +
                     'и комфортно',
                 type: {
-                    positive: [],
+                    positive: [ AnswerType.caring],
                     negative: []
                 },
             },
