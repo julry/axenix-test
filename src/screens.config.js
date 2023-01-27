@@ -173,13 +173,13 @@ export const screens = [
     name: 'question-9',
     component:  Question9,
     type: ScreenType.Question,
-    preloadImages: [axenixOffice10],
+    preloadImages: [axenixOffice10, bgInteract3],
   },
   {
     name: 'descr-1',
     component:  Description1,
     type: ScreenType.Description,
-    preloadImages: [bgInteract3, cakeStart, cake, finalSvg],
+    preloadImages: [],
     dependentQuestion: {
       id: '9',
       answers: ['1', '3']
@@ -189,7 +189,7 @@ export const screens = [
     name: 'descr-2',
     component:  Description2,
     type: ScreenType.Question,
-    preloadImages: [cakeFinished, axenixOffice11, present],
+    preloadImages: [cakeFinished, axenixOffice11, present, cakeStart, cake, finalSvg],
   },
   {
     name: 'descr-3',

@@ -32,7 +32,7 @@ const ButtonStyled = styled(ButtonCentered)`
 export const PreInteract3 = () => {
     const {character, next} = useProgress();
     const {textBg, textColor} = character;
-    return <TextPart background={bgInteract3} isScaled isNeedTap={false}>
+    return <TextPart background={bgInteract3} isScaled>
         <TextBlockStyled textBg={textBg} textColor={textColor}>
             {`Ты решил${character.sex === sex.Male ? '' : 'а'} сделать подарок\nколлегам и заказал${character.sex === sex.Male ? '' : 'а'} им кексики.` +
                 '\nПомоги курьеру пройти лабиринт,\nчтобы доставка прибыла вовремя :)'}

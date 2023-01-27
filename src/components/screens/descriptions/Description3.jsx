@@ -21,5 +21,6 @@ export const Description3 = () => {
             width: '57.86vw'
         }}
         onNext={next}
+        hasNextPart
     />
 }

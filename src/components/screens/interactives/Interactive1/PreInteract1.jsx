@@ -26,11 +26,10 @@ const ButtonStyled = styled(ButtonCentered)`
 `;
 
 export const PreInteract1 = () => {
-    const text1 = 'Кирилл проводил тебя до рабочего\nстола, на котором ты находишь\nкоробку с запутанными проводами.\n' +
-        'Упс... Кажется, их предыдущий\nвладелец не был любителем\nпорядка :(';
+    const text1 = 'Кирилл проводил тебя до рабочего стола, на котором ты находишь коробку с запутанными проводами. \n' +
+        'Упс... Кажется, тот, кто их складывал, не был любителем порядка:(';
     const text2 = 'Распутай провода, чтобы \n' +
-        'IT-специалист смог настроить \n' +
-        'твой рабочий компьютер.';
+        'IT-специалист смог подключить твой новый рабочий компьютер.';
     const [text, setText] = useState(text1);
     const [isStart, setIsStart] = useState(false);
     const {character, next} = useProgress();
@@ -43,8 +42,8 @@ export const PreInteract1 = () => {
         }
     };
     return (
-        <TextPart background={bgInteract1} isScaled onClick={onNext} isNeedTap={false}>
-            <TextBlockStyled textBg={textBg} textColor={textColor}>
+        <TextPart background={bgInteract1} isScaled>
+            <TextBlockStyled textBg={textBg} textColor={textColor} hasNextPart={!isStart} onClick={onNext}>
                 {text}
             </TextBlockStyled>
             <BoxStyled />
