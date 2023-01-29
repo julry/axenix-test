@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { TextPart } from '../../../shared/TextPart';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { bgInteract1, boxClosed } from '../../../../constants/images';
-import { TextBlock } from '../../../shared/TextBlock';
 import { useProgress } from '../../../../hooks/useProgress';
+import { TextPart } from '../../../shared/TextPart';
+import { TextBlock } from '../../../shared/TextBlock';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 
 const TextBlockStyled = styled(TextBlock)`
@@ -22,7 +23,7 @@ const BoxStyled = styled.div`
 `;
 
 const ButtonStyled = styled(ButtonCentered)`
-    margin-top: max(-5.6vw, -19px);
+  margin-top: max(-5.6vw, -19px);
 `;
 
 export const PreInteract1 = () => {
@@ -41,13 +42,18 @@ export const PreInteract1 = () => {
             setIsStart(true);
         }
     };
+
+    const onStart = () => {
+        reachMetrikaGoal('q6_start');
+        next();
+    };
     return (
         <TextPart background={bgInteract1} isScaled>
             <TextBlockStyled textBg={textBg} textColor={textColor} hasNextPart={!isStart} onClick={onNext}>
                 {text}
             </TextBlockStyled>
-            <BoxStyled />
-            {isStart && <ButtonStyled onClick={next}>Разобрать</ButtonStyled>}
+            <BoxStyled/>
+            {isStart && <ButtonStyled onClick={onStart}>Разобрать</ButtonStyled>}
         </TextPart>
     );
 };

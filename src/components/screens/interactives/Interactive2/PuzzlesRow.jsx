@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
 const PuzzleWrapper = styled.div`
   position: absolute;
-  ${({ styles }) => styles};
+  ${({styles}) => styles};
 `;
 
 export const PuzzlesRow = (props) => {
@@ -27,14 +27,13 @@ export const PuzzlesRow = (props) => {
             hovered: monitor.canDrop() && monitor.isOver(),
         }),
         drop: (item) => {
-            // if (isWin) return;
             props.onDrop?.(item);
         },
     }), []);
 
     return (
         <Wrapper ref={drop}>
-            {shownPuzzles.filter(puz=> !puz.dropped).map((puzzle) => (
+            {shownPuzzles.filter(puz => !puz.dropped).map((puzzle) => (
                 <PuzzleWrapper key={puzzle.id} styles={mapInitialPosition(...puzzle?.position)}>
                     <Puzzle
                         isWin={isWin}
@@ -43,5 +42,5 @@ export const PuzzlesRow = (props) => {
                 </PuzzleWrapper>
             ))}
         </Wrapper>
-    )
-}
+    );
+};

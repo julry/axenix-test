@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import gsap from "gsap";
+import gsap from 'gsap';
 import styled from 'styled-components';
-import Draggable from "gsap/Draggable";
+import Draggable from 'gsap/Draggable';
 import { Button } from '../../../shared/Button';
 import { useProgress } from '../../../../hooks/useProgress';
 import { LinesGame } from './svg/LinesGame';
 import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import box_open from './svg/box_open.svg'
+import box_open from './svg/box_open.svg';
 import { WinStars } from '../../../shared/WinStars';
 import { bgInteract1 } from '../../../../constants/images';
 import { TextBlock } from '../../../shared/TextBlock';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -40,7 +41,7 @@ const BoxWrapper = styled.div`
   height: 75%;
   margin: 12.4% 0;
   background: url(${box_open}) no-repeat 50% 50%;
-  
+
   @media screen and (min-width: 400px) {
     transform: scale(1.1);
   }
@@ -98,12 +99,14 @@ export const Interactive1 = () => {
     const gameRef = useRef();
 
     useEffect(() => {
-        Draggable.create(".draggable-1", {
-            type: "x,y",
-            onDrag: function () { updateLine('.line-1', this.x + 24, this.y + 160, '#line-1_gradient'); },
+        Draggable.create('.draggable-1', {
+            type: 'x,y',
+            onDrag: function () {
+                updateLine('.line-1', this.x + 24, this.y + 160, '#line-1_gradient');
+            },
             onRelease: function () {
-                if (this.x < 190 || this.y > -145 || this.y < -170) {
-                    reset(".draggable-1", '.line-1', 18, 160.5)
+                if (this.x < 190 || this.x > 212 || this.y > -150 || this.y < -155) {
+                    reset('.draggable-1', '.line-1', 18, 160.5);
                     complete(0, false);
                 } else {
                     complete(0, true);
@@ -112,12 +115,14 @@ export const Interactive1 = () => {
             bounds: gameRef.current,
             liveSnap: {points: [{x: 208, y: -152.5}], radius: 35}
         });
-        Draggable.create(".draggable-2", {
-            type: "x,y",
-            onDrag: function () { updateLine('.line-2', this.x + 24, this.y + 109.5, '#line-2_gradient'); },
+        Draggable.create('.draggable-2', {
+            type: 'x,y',
+            onDrag: function () {
+                updateLine('.line-2', this.x + 24, this.y + 109.5, '#line-2_gradient');
+            },
             onRelease: function () {
-                if (this.x < 190 || this.y > -45 || this.y < -60) {
-                    reset(".draggable-2", '.line-2', 18, 109.5)
+                if (this.x < 190 || this.x > 212 || this.y > -48 || this.y < -54) {
+                    reset('.draggable-2', '.line-2', 18, 109.5);
                     complete(1, false);
                 } else {
                     complete(1, true);
@@ -126,12 +131,14 @@ export const Interactive1 = () => {
             bounds: gameRef.current,
             liveSnap: {points: [{x: 208, y: -51}], radius: 35}
         });
-        Draggable.create(".draggable-3", {
-            type: "x,y",
-            onDrag: function () { updateLine('.line-3', this.x + 24, this.y + 58.5, '#line-3_gradient'); },
+        Draggable.create('.draggable-3', {
+            type: 'x,y',
+            onDrag: function () {
+                updateLine('.line-3', this.x + 24, this.y + 58.5, '#line-3_gradient');
+            },
             onRelease: function () {
-                if (this.x < 190 || this.y > 110 || this.y < 95) {
-                    reset(".draggable-3", '.line-3', 18, 58.5)
+                if (this.x < 190 || this.x > 212 || this.y > 103 || this.y < 98) {
+                    reset('.draggable-3', '.line-3', 18, 58.5);
                     complete(2, false);
                 } else {
                     complete(2, true);
@@ -140,12 +147,14 @@ export const Interactive1 = () => {
             bounds: gameRef.current,
             liveSnap: {points: [{x: 208, y: 101.5}], radius: 35}
         });
-        Draggable.create(".draggable-4", {
-            type: "x,y",
-            onDrag: function () { updateLine('.line-4', this.x + 24, this.y + 7.8, '#line-4_gradient'); },
+        Draggable.create('.draggable-4', {
+            type: 'x,y',
+            onDrag: function () {
+                updateLine('.line-4', this.x + 24, this.y + 7.8, '#line-4_gradient');
+            },
             onRelease: function () {
-                if (this.x < 190 || this.y > 110 || this.y < 95) {
-                    reset(".draggable-4", '.line-4', 19, 7.8);
+                if (this.x < 190 || this.x > 212 || this.y > 103 || this.y < 98) {
+                    reset('.draggable-4', '.line-4', 19, 7.8);
                     complete(3, false);
                 } else {
                     complete(3, true);
@@ -154,17 +163,17 @@ export const Interactive1 = () => {
             bounds: gameRef.current,
             liveSnap: {points: [{x: 208, y: 101.5}], radius: 35}
         });
-    }, [])
+    }, []);
 
     function updateLine(selector, x, y, selectorGr) {
-        const x1 = gsap.getProperty(selector, "x1")?.baseVal?.value;
-        const y1 = gsap.getProperty(selector, "y1")?.baseVal?.value;
-        const width = gsap.getProperty(selector, "stroke-width");
+        const x1 = gsap.getProperty(selector, 'x1')?.baseVal?.value;
+        const y1 = gsap.getProperty(selector, 'y1')?.baseVal?.value;
+        const width = gsap.getProperty(selector, 'stroke-width');
         let dx = x - x1;
         let dy = y - y1;
-        let len = Math.sqrt(dx*dx + dy*dy);
-        dx = dx/len;
-        dy = dy/len;
+        let len = Math.sqrt(dx * dx + dy * dy);
+        dx = dx / len;
+        dy = dy / len;
 
         let temp = dx;
         dx = -dy;
@@ -173,10 +182,10 @@ export const Interactive1 = () => {
         dx = width * dx;
         dy = width * dy;
 
-        const gradient_x1= x1 + dx*0.5;
-        const gradient_y1= y1 + dy*0.5;
-        const gradient_x2= x1 - dx * 0.5;
-        const gradient_y2= y1 - dy * 0.5;
+        const gradient_x1 = x1 + dx * 0.5;
+        const gradient_y1 = y1 + dy * 0.5;
+        const gradient_x2 = x1 - dx * 0.5;
+        const gradient_y2 = y1 - dy * 0.5;
 
         gsap.set(selector, {
             attr: {
@@ -225,7 +234,12 @@ export const Interactive1 = () => {
         if (completed.filter(completeLine => !!completeLine).length === 4) {
             setFinished(true);
         }
-    }, [completed])
+    }, [completed]);
+
+    const onNext = () => {
+        reachMetrikaGoal('q6_finish');
+        next();
+    };
 
     return (
         <Wrapper>
@@ -236,8 +250,8 @@ export const Interactive1 = () => {
                 <BoxWrapper>
                     {finished && (
                         <Dump>
-                            <WinStarsStyled />
-                            <ButtonStyled onClick={next}>Продолжить</ButtonStyled>
+                            <WinStarsStyled/>
+                            <ButtonStyled onClick={onNext}>Продолжить</ButtonStyled>
                         </Dump>
                     )}
                     <TextBlockStyled textBg={textBg} textColor={textColor} finished={finished}>
@@ -247,7 +261,7 @@ export const Interactive1 = () => {
                         }
                     </TextBlockStyled>
                     <WrapperGame ref={gameRef}>
-                        <LinesGame />
+                        <LinesGame/>
                     </WrapperGame>
                 </BoxWrapper>
             </ContentWrapper>

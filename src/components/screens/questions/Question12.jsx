@@ -13,14 +13,15 @@ const Present = styled.div`
   top: calc(-24.4vw + 19px);
   background: url(${present}) no-repeat;
   background-size: contain;
-  
+
   @media screen and (min-width: 400px) {
     top: -85px;
   }
 `;
 
 export const Question12 = () => (
-    <QuestionWrapper question={getQuestionById('12')}>
-        <Present />
+    <QuestionWrapper question={getQuestionById('12')} questionMetrika={'q15'}>
+        <Present/>
     </QuestionWrapper>
-)
+);
+

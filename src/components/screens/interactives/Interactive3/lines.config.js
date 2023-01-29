@@ -3,7 +3,7 @@ export const sides = {
     bottom: 'bottom',
     left: 'left',
     top: 'top'
-}
+};
 
 const line1 = [
     {x: 0, [sides.bottom]: true},

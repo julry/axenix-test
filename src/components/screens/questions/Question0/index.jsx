@@ -1,16 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Background, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import gradientBg from '../../../shared/svg/gradientBg.svg';
-import { useProgress } from '../../../../hooks/useProgress';
-import { Button } from '../../../shared/Button';
-import { characters } from '../../../../characters.config';
-import { CharacterCard } from './CharacterCard';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import './characterChoose.css';
-import { Title } from '../../../shared/styledTexts';
-import { Arrow } from './svg/Arrow';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
+import { useProgress } from '../../../../hooks/useProgress';
+import { characters } from '../../../../characters.config';
 import { colors } from '../../../../constants/colors';
+import gradientBg from '../../../shared/svg/gradientBg.svg';
+import { Background, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
+import { Button } from '../../../shared/Button';
+import { Title } from '../../../shared/styledTexts';
+import { CharacterCard } from './CharacterCard';
+import './characterChoose.css';
+import { Arrow } from './svg/Arrow';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapperStyled = styled(ContentWrapper)`
-    align-items: center;
+  align-items: center;
 `;
 
 const ChooseWrapper = styled.div`
@@ -49,36 +50,36 @@ const ArrowStyled = styled(Arrow)`
 `;
 
 const ArrowRight = styled(ArrowStyled)`
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 `;
 
 export const Question0 = () => {
     const {updateProgress, next, updateAnswer} = useProgress();
     const [curCharacterIndex, setCurCharacterIndex] = useState(0);
     const [side, setSide] = useState('');
-    const nodeRef = useRef(null);
 
     const onPrev = () => {
         const characterId = (curCharacterIndex || characters.length) - 1;
         setCurCharacterIndex(characterId);
         setSide('prev');
-    }
+    };
 
     const onNext = () => {
         const characterId = (curCharacterIndex + 1) % characters.length;
         setCurCharacterIndex(characterId);
         setSide('next');
-    }
+    };
 
     const addEndListener = (node, done) => {
-        node.addEventListener("transitionend", done, false);
-    }
+        node.addEventListener('transitionend', done, false);
+    };
 
     const onChoose = () => {
+        reachMetrikaGoal(characters[curCharacterIndex].metrika);
         updateProgress('character', characters[curCharacterIndex]);
         updateAnswer('0', characters[curCharacterIndex].id);
         next();
-    }
+    };
 
     return (
         <Wrapper>
@@ -104,7 +105,7 @@ export const Question0 = () => {
                             </CSSTransition>
                         </TransitionGroup>
                     </CharacterWrapper>
-                    <ArrowRight onClick={onNext} />
+                    <ArrowRight onClick={onNext}/>
                 </ChooseWrapper>
                 <Button onClick={onChoose} color={colors.orange}>Выбрать</Button>
             </ContentWrapperStyled>
@@ -113,4 +114,4 @@ export const Question0 = () => {
             </BackgroundWrapper>
         </Wrapper>
     );
-}
+};

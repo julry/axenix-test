@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import './characterChoose.css';
+import styled from 'styled-components';
 import { colors } from '../../../../constants/colors';
 import { Description } from '../../../shared/styledTexts';
 import { opacityAnim } from '../../../shared/keyframes';
+import './characterChoose.css';
 
 const CharacterWrapper = styled.div`
   width: 100%;
@@ -29,42 +29,43 @@ const CharacterInfo = styled.div`
   border: 2px solid ${colors.purple};
   border-radius: 13px 0 0 13px;
   border-right: none;
-  transform: matrix(1,0,0.2,1,0,0);
+  transform: matrix(1, 0, 0.2, 1, 0, 0);
   animation: ${({isOpacity}) => isOpacity ? opacityAnim : ''} 300ms forwards;
   animation-delay: 350ms;
   transition: opacity 300ms;
   white-space: pre;
-  
+
   & ${Description} {
-    transform: matrix(1,0, -0.2,1,0,0);
+    transform: matrix(1, 0, -0.2, 1, 0, 0);
   }
-  
+
   @media screen and (max-width: 310px) {
-      min-width: 170px;
+    min-width: 170px;
   }
 `;
-
 
 
 export const CharacterCard = (props) => {
     const {photo, post, name, changed} = props;
     const [isOpacity, setIsOpacity] = useState(false);
+
     useEffect(() => {
         if (changed) {
             setIsOpacity(true);
         }
-    }, [])
+    }, []);
+
     return (
-            <CharacterWrapper
-                className={'slide'}
-                key={photo}
-            >
-                <CharacterImage src={photo}/>
-                <CharacterInfo isOpacity={isOpacity}>
-                    <Description>
-                        {`${name}, ${post}`}
-                    </Description>
-                </CharacterInfo>
-            </CharacterWrapper>
+        <CharacterWrapper
+            className={'slide'}
+            key={photo}
+        >
+            <CharacterImage src={photo}/>
+            <CharacterInfo isOpacity={isOpacity}>
+                <Description>
+                    {`${name}, ${post}`}
+                </Description>
+            </CharacterInfo>
+        </CharacterWrapper>
     );
 };

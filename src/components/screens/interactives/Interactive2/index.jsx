@@ -3,20 +3,21 @@ import styled, { keyframes } from 'styled-components';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { MouseTransition, DndProvider, TouchTransition } from 'react-dnd-multi-backend';
-import { useProgress } from '../../../../hooks/useProgress';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { shuffle } from '../../../../utils/shuffle';
-import { Board } from './Board';
+import { woodBg } from '../../../../constants/images';
+import { useProgress } from '../../../../hooks/useProgress';
+import { Background, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
+import { WinStars } from '../../../shared/WinStars';
+import { ButtonCentered } from '../../../shared/ButtonCentered';
+import { opacityAnim } from '../../../shared/keyframes';
 import topLeftPuzzle from './svgs/topLeftPuzzle.svg';
 import topRightPuzzle from './svgs/topRightPuzzle.svg';
 import bottomRightPuzzle from './svgs/bottomRightPuzzle.svg';
 import bottomLeftPuzzle from './svgs/bottomLeftPuzzle.svg';
-import { Background, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import { woodBg } from '../../../../constants/images';
-import { WinStars } from '../../../shared/WinStars';
-import { ButtonCentered } from '../../../shared/ButtonCentered';
-import { opacityAnim } from '../../../shared/keyframes';
 import boardWin from './svgs/boardWin.svg';
 import { PuzzlesRow } from './PuzzlesRow';
+import { Board } from './Board';
 
 const PUZZLES_ROW_AMOUNT = 2;
 const PUZZLES_COLUMN_AMOUNT = 2;
@@ -247,6 +248,11 @@ export const Interactive2 = () => {
         });
     };
 
+    const onNext = () => {
+        reachMetrikaGoal('q8_finish');
+        next();
+    };
+
     return (
         <Wrapper>
             <BackgroundWrapper>
@@ -265,7 +271,7 @@ export const Interactive2 = () => {
                         onPuzzleDrop={onDrop}
                         droppedPuzzles={droppedPuzzles}
                     />
-                    {isWin ? <ButtonCenteredStyled onClick={next}>Продолжить</ButtonCenteredStyled>
+                    {isWin ? <ButtonCenteredStyled onClick={onNext}>Продолжить</ButtonCenteredStyled>
                         : <PuzzlesRow
                             shownPuzzles={shownPuzzles}
                             mapInitialPosition={mapInitialPosition}

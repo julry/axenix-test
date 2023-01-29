@@ -9,6 +9,7 @@ import { colors } from '../../constants/colors';
 import { Description, DescriptionSm } from '../shared/styledTexts';
 import { AnswerTypeRusNotif } from '../../answerTypes.config';
 import { Notification } from '../shared/Notification';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const QuestionContent = styled.div`
   position: relative;
@@ -48,7 +49,7 @@ const AnswerWrapper = styled.div`
   text-align: ${({isShort}) => isShort ? 'center' : 'left'};
   width: ${({isShort}) => isShort ? '5.6em' : '100%'};
 
-  @media screen and (min-width: 640px) and (min-height: 600px){
+  @media screen and (min-width: 640px) and (min-height: 600px) {
     padding: ${({isShort}) => isShort ? '15px' : '15px 25px'};
     width: ${({isShort}) => isShort ? '7.6em' : '100%'};
   }
@@ -65,7 +66,7 @@ const Number = styled.p`
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   margin-right: 2.6vw;
-  
+
   @media screen and (max-width: 320px) {
     font-size: 16px;
   }
@@ -81,8 +82,8 @@ const Number = styled.p`
 
 
 export const QuestionWrapper = props => {
-    const { question, isShortTimeout } = props;
-    const { answers, updateAnswer, next, character } = useProgress();
+    const {question, questionMetrika} = props;
+    const {answers, updateAnswer, next, character} = useProgress();
     const [part, setPart] = useState('text');
     const [text, setText] = useState(question.text?.[character.sex] || question.text || '');
     const [notificationList, setNotificationList] = useState([]);
@@ -92,8 +93,6 @@ export const QuestionWrapper = props => {
     const {noCharacterText, textBlockStyles, characterQuestion, isShort} = question;
 
     const onNext = (timeout) => {
-        // const goal = questionNumber === questionsCount ? 'finishtest' : `question${questionNumber}`;
-        // reachMetrikaGoal(goal);
         setTimeout(() => next(), timeout);
     };
 
@@ -102,29 +101,31 @@ export const QuestionWrapper = props => {
         const positiveText = '+1 к ';
         const negativeText = '-1 от ';
         return (isPositive ? positiveText : negativeText) + typeText;
-    }
+    };
 
     const handleAnswerChange = useCallback((answer = {}) => {
         if (answers[question?.id]) return;
-        const { id, type } = answer;
+        const {id, type} = answer;
         updateAnswer(question?.id, id);
         const notifList = Object.keys(type)
             .map(key => type[key].map(t => getNotifText(key, AnswerTypeRusNotif[t][key])))
             .flat();
         setNotificationList(notifList);
         const timeout = 700 + (notifList.length * 550);
+        reachMetrikaGoal(questionMetrika);
         onNext(timeout);
     }, [question, updateAnswer]);
 
 
     const setNext = () => {
         const text2 = question.text2?.[character.sex] ?? question.text2;
+        if (props.metrikaTextPart) reachMetrikaGoal(props.metrikaTextPart);
         if (text2 && text !== text2) {
             setText(text2);
             return;
         }
-         setPart('question');
-    }
+        setPart('question');
+    };
 
     return part === 'text' ? (
         <TextPart
@@ -132,7 +133,6 @@ export const QuestionWrapper = props => {
             person={!noCharacterText && photo}
             personWidth={character.width}
             isScaled={true}
-            isShortTimeout={isShortTimeout}
             personHeight={character.height}
             secondPerson={question.anotherCharacter}
             className={props.className}
@@ -184,5 +184,5 @@ export const QuestionWrapper = props => {
                 ))
             }
         </QuestionPart>
-    )
+    );
 };

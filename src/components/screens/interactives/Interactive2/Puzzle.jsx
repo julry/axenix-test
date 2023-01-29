@@ -4,7 +4,7 @@ import { useDrag, useDragLayer } from 'react-dnd';
 import { mergeRefs } from 'react-merge-refs';
 
 const PuzzleStyled = styled.div`
-  ${({ styles }) => styles};
+  ${({styles}) => styles};
   z-index: 10;
   -webkit-touch-callout: none;
   box-sizing: content-box;
@@ -17,14 +17,14 @@ const StyledPuzzlePreview = styled(PuzzleStyled)`
 `;
 
 export const Puzzle = (props) => {
-    const { puzzle, isWin } = props;
+    const {puzzle, isWin} = props;
     const {id, position, styles} = puzzle;
     const dragRef = useRef();
 
-    const [{ isDragging }, drag] = useDrag(() => ({
+    const [{isDragging}, drag] = useDrag(() => ({
         type: 'PUZZLE',
         item: () => {
-            return { id, position, styles };
+            return {id, position, styles};
         },
         collect: monitor => ({
             isDragging: monitor.isDragging(),
@@ -33,7 +33,7 @@ export const Puzzle = (props) => {
 
     const PuzzlePreview = (props) => {
         const {offset} = useDragLayer(monitor => ({
-                offset: monitor.getClientOffset(),
+            offset: monitor.getClientOffset(),
         }));
 
         if (!isDragging || !offset || !offset?.x || !offset?.y) {
@@ -48,13 +48,12 @@ export const Puzzle = (props) => {
             top: 0,
             left: 0,
             pointerEvents: 'none',
-            transform:`translate(${x}, ${y})`,
+            transform: `translate(${x}, ${y})`,
             WebkitTransform: `translate(${x}, ${y})`
-        }
+        };
 
         return <StyledPuzzlePreview style={style} {...props}/>;
     };
-
 
     if (isDragging) {
         return <PuzzlePreview styles={styles}/>;

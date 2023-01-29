@@ -30,7 +30,7 @@ export const LogoScreen = (props) => {
     return (
         <Wrapper>
             <ContentWrapper>
-                <LogoStyled />
+                <LogoStyled/>
                 <TextButtonBlock onClick={onClick} text={btnText} isNeedTap={isNeedTap}>
                     <BoldText>{boldText}</BoldText>
                     <Description>

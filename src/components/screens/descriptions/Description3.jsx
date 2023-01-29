@@ -1,8 +1,8 @@
 import React from 'react';
 import { useProgress } from '../../../hooks/useProgress';
-import { DescriptionWrapper } from '../DescriptionWrapper';
 import { axenixOffice8, manCeo } from '../../../constants/images';
 import { sex } from '../../../characters.config';
+import { DescriptionWrapper } from '../DescriptionWrapper';
 
 export const Description3 = () => {
     const {character, next, answers} = useProgress();
@@ -22,5 +22,5 @@ export const Description3 = () => {
         }}
         onNext={next}
         hasNextPart
-    />
-}
+    />;
+};

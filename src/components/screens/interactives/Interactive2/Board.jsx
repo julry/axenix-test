@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { PuzzlePlace } from './PuzzlePlace';
 import { colors } from '../../../../constants/colors';
 import board from './svgs/board.svg';
 import boardWin from './svgs/boardWin.svg';
+import { PuzzlePlace } from './PuzzlePlace';
 
 const PuzzleBoardWrapper = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ const PuzzleBoardRow = styled.div`
 `;
 
 export const Board = (props) => {
-    const {puzzles = [], onPuzzleDrop, droppedPuzzles, isWin} = props;
+    const {onPuzzleDrop, droppedPuzzles, isWin, puzzles = []} = props;
 
     return (
         <PuzzleBoardWrapper className={props.className} isWin={isWin}>
