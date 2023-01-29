@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useResult } from '../../hocs/useResult';
-import { Button } from '../shared/Button';
 import { Background, BackgroundWrapper, ContentWrapper } from '../shared/wrappers';
 import gradientBg from '../shared/svg/gradientBg.svg';
-import { BoldText, Description, DescriptionSm, RegularText, Title } from '../shared/styledTexts';
+import { Description, DescriptionSm, Title } from '../shared/styledTexts';
 import { colors } from '../../constants/colors';
 import { QuestionMark } from '../shared/svg/QuestionMark';
 import { Modal } from '../shared/Modal';
@@ -12,6 +11,7 @@ import { ButtonCentered } from '../shared/ButtonCentered';
 import { onLinkCopy } from '../../utils/onLinkCopy';
 import { DoneMark } from '../shared/svg/DoneMark';
 import { useProgress } from '../../hooks/useProgress';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapperStyled = styled(ContentWrapper)`
-    ${({isModal}) => isModal ? 'filter: blur(4px)' : ''};
+  ${({isModal}) => isModal ? 'filter: blur(4px)' : ''};
 `;
 
 const TitleStyled = styled(Title)`
@@ -57,6 +57,7 @@ const PointWrapper = styled.div`
 
 const PointPath = styled(PointWrapper)`
   width: calc(70.4vw * ${({part}) => part > 0 ? part : 0});
+  max-width: 70.4vw;
   background: ${colors.purple};
   border: ${({part}) => part > 0 ? '1.5px' : 0} solid white;
   margin-top: calc(-1 * var(--pointLineHeight));
@@ -111,6 +112,7 @@ export const Final = () => {
     const [isCopyModal, setIsCopyModal] = useState(false);
 
     const onCopyButtonClick = () => {
+        reachMetrikaGoal('share');
         onLinkCopy();
         setIsCopyModal(true);
         setTimeout(() => setIsCopyModal(false), 3500);
@@ -118,12 +120,13 @@ export const Final = () => {
 
     const onClickSign = (type) => {
         const text = result.find(res => res.type === type)?.text?.[character?.sex] ?? '';
-        setIsModal({shown: true, text})
+        setIsModal({shown: true, text});
     };
 
     const openHref = (href) => {
+        reachMetrikaGoal('request');
         window.open(href, '_blank');
-    }
+    };
 
     return (
         <Wrapper>
@@ -140,7 +143,7 @@ export const Final = () => {
                     {points.map(point => (
                         <PointInfo key={point.type}>
                             <PointName>{point.name}</PointName>
-                            <PointWrapper />
+                            <PointWrapper/>
                             <PointPath part={point.part}/>
                             {!!result.filter(res => res.type === point.type).length && (
                                 <QuestionMarkStyled onClick={() => onClickSign(point.type)}/>
@@ -171,10 +174,10 @@ export const Final = () => {
             </Modal>}
             {isCopyModal && <Modal>
                 <ModalContent>
-                    <DoneMarkStyled />
+                    <DoneMarkStyled/>
                     <Description>Ссылка скопирована</Description>
                 </ModalContent>
             </Modal>}
         </Wrapper>
-    )
-}
+    );
+};

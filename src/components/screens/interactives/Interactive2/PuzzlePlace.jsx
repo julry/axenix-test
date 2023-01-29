@@ -3,7 +3,7 @@ import { useDrop } from 'react-dnd';
 import { Puzzle } from './Puzzle';
 
 const PuzzlePlaceStyled = styled.div`
-  ${({ styles }) => styles};
+  ${({styles}) => styles};
   position: relative;
   bottom: auto;
   width: calc(217px / 2);
@@ -11,6 +11,7 @@ const PuzzlePlaceStyled = styled.div`
   border-bottom: none;
   border-top: none;
   background: none;
+
   & + & {
     border-left: none;
   }

@@ -1,9 +1,15 @@
 import React from 'react';
 import { useProgress } from '../../hooks/useProgress';
 import { LogoScreen } from './LogoScreen';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 export const Prefinal = () => {
     const {next} = useProgress();
+
+    const onNext = () => {
+        reachMetrikaGoal('end_game');
+        next();
+    };
 
     return (
         <LogoScreen
@@ -16,7 +22,7 @@ export const Prefinal = () => {
                 </>
             )}
             btnText={'Here we go'}
-            onClick={next}
+            onClick={onNext}
         />
     );
 };

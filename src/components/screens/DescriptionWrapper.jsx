@@ -21,5 +21,5 @@ export const DescriptionWrapper = (props) => {
                 </TextBlock>
             </TextBlockWrapper>
         </TextPart>
-    )
-}
+    );
+};

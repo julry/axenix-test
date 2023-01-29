@@ -1,22 +1,22 @@
 import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Button } from '../../../shared/Button';
 import { useProgress } from '../../../../hooks/useProgress';
-import { lines, sides } from './lines.config';
-import { Board } from './Board';
+import { bgInteract3 } from '../../../../constants/images';
+import { colors } from '../../../../constants/colors';
+import { Button } from '../../../shared/Button';
 import { BackgroundWrapper, ContentWrapper, BackgroundBlurred } from '../../../shared/wrappers';
 import cake from './svg/cake.svg';
 import final from './svg/final.svg';
-import { colors } from '../../../../constants/colors';
 import { Arrow } from './svg/Arrow';
-import { bgInteract3 } from '../../../../constants/images';
+import { lines, sides } from './lines.config';
+import { Board } from './Board';
 
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   --board-size: 313px;
   --button-size: 66px;
-  
+
   @media screen and (max-width: 320px) {
     --button-size: 48px;
     --board-size: 265px;
@@ -34,13 +34,13 @@ const CakeWrapper = styled.div`
   top: calc(${({top}) => top} * (var(--board-size) / 6 - 2px));
   left: calc(${({left}) => left} * (var(--board-size) / 6 - 2px));
   width: calc(var(--board-size) / 6 - 8px);
-  height: calc(var(--board-size)  / 6 - 10px);
+  height: calc(var(--board-size) / 6 - 10px);
   transition: left 0.55s ease-in, top 0.55s ease-in;
   padding-top: 2px;
-  animation: ${({bumping}) => bumping === 'horizontal' ? bumpHorizontal : bumping === 'vertical' ? bumpVertical : '' } 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  animation: ${({bumping}) => bumping === 'horizontal' ? bumpHorizontal : bumping === 'vertical' ? bumpVertical : ''} 0.82s cubic-bezier(.36, .07, .19, .97) both;
   transform: translate3d(0, 0, 0);
-  
-  @media screen and (max-width: 315px){
+
+  @media screen and (max-width: 315px) {
     width: calc(var(--board-size) / 6 - 10px);
     height: calc(var(--board-size) / 6 - 8px);
   }
@@ -118,10 +118,11 @@ const ButtonStyled = styled(Button)`
   align-items: center;
   width: var(--button-size);
   height: var(--button-size);
+
   & + & {
     margin-top: 20px;
   }
-  
+
   @media screen and (max-width: 315px) {
     & + & {
       margin-top: 10px;
@@ -142,7 +143,6 @@ export const Interactive3 = () => {
     const [bumping, setBumping] = useState('');
     const {next} = useProgress();
     const cakeRef = useRef();
-    //bump animation
 
     const onMove = (side) => {
         if (activeCell[side] || !cakeRef.current) {
@@ -172,32 +172,33 @@ export const Interactive3 = () => {
         setActiveCell(nextCell);
         if (nextCell.isFinal) setTimeout(() => next(), 800);
 
-    }
+    };
     const getStylesArrowBySide = (side) => {
         switch (side) {
             case sides.top:
                 return `
                     margin-bottom: 15%;
-                `
+                `;
             case sides.bottom:
                 return `
                     transform: rotate(180deg);
                     margin-top: 15%;
-                `
+                `;
             case sides.left:
                 return `
                     transform: rotate(-90deg);
                     margin-right: 15%;
-                `
+                `;
             case sides.right:
                 return `
                     transform: rotate(90deg);
                     margin-left: 15%;
-                `
+                `;
             default:
                 break;
         }
-    }
+    };
+
     return (
         <Wrapper>
             <ContentWrapper>
@@ -205,7 +206,7 @@ export const Interactive3 = () => {
                     <CakeWrapper ref={cakeRef} top={activeCell.y} left={activeCell.x} bumping={bumping}>
                         <Cake src={cake} alt={''}/>
                     </CakeWrapper>
-                    <FinalWrapper />
+                    <FinalWrapper/>
                 </Board>
                 <ButtonsBlock>
                     <ButtonStyled
@@ -237,7 +238,7 @@ export const Interactive3 = () => {
                 </ButtonsBlock>
             </ContentWrapper>
             <BackgroundWrapper>
-                <BackgroundBlurred src={bgInteract3} alt={''} />
+                <BackgroundBlurred src={bgInteract3} alt={''}/>
             </BackgroundWrapper>
         </Wrapper>
     );

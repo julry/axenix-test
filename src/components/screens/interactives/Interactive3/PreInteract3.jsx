@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TextPart } from '../../../shared/TextPart';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { bgInteract3 } from '../../../../constants/images';
 import { useProgress } from '../../../../hooks/useProgress';
-import { TextBlock } from '../../../shared/TextBlock';
-import cakeStart from './svg/cakeStart.svg';
-import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { sex } from '../../../../characters.config';
+import { TextPart } from '../../../shared/TextPart';
+import { TextBlock } from '../../../shared/TextBlock';
+import { ButtonCentered } from '../../../shared/ButtonCentered';
+import cakeStart from './svg/cakeStart.svg';
 
 const TextBlockStyled = styled(TextBlock)`
   margin-top: min(32vw, 16vh);
@@ -26,18 +27,24 @@ const CakeWrapper = styled.div`
 `;
 
 const ButtonStyled = styled(ButtonCentered)`
-    margin-top: -13px;
+  margin-top: -13px;
 `;
 
 export const PreInteract3 = () => {
     const {character, next} = useProgress();
     const {textBg, textColor} = character;
+
+    const onNext = () => {
+        reachMetrikaGoal('q14_start');
+        next();
+    };
+
     return <TextPart background={bgInteract3} isScaled>
         <TextBlockStyled textBg={textBg} textColor={textColor}>
             {`Ты решил${character.sex === sex.Male ? '' : 'а'} сделать подарок\nколлегам и заказал${character.sex === sex.Male ? '' : 'а'} им кексики.` +
                 '\nПомоги курьеру пройти лабиринт,\nчтобы доставка прибыла вовремя :)'}
         </TextBlockStyled>
-        <CakeWrapper />
-        <ButtonStyled onClick={next}>Помочь</ButtonStyled>
-    </TextPart>
-}
+        <CakeWrapper/>
+        <ButtonStyled onClick={onNext}>Помочь</ButtonStyled>
+    </TextPart>;
+};

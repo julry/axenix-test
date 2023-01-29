@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Cell = styled.div`
-  margin-top: -5px; 
+  margin-top: -5px;
   margin-left: -5px;
   border-top: ${({top, y}) => top && y !== 0 ? '5px' : '0px'} solid ${colors.purple};
   border-right: ${({right, x}) => right && x !== 5 ? '5px' : '0px'} solid ${colors.purple};
@@ -39,5 +39,5 @@ export const Board = (props) => {
             ))}
             {props.children}
         </Wrapper>
-    )
-}
+    );
+};
