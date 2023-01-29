@@ -105,7 +105,7 @@ export const Interactive1 = () => {
                 updateLine('.line-1', this.x + 24, this.y + 160, '#line-1_gradient');
             },
             onRelease: function () {
-                if (this.x < 190 || this.y > -145 || this.y < -170) {
+                if (this.x < 190 || this.x > 212 || this.y > -150 || this.y < -155) {
                     reset('.draggable-1', '.line-1', 18, 160.5);
                     complete(0, false);
                 } else {
@@ -121,7 +121,7 @@ export const Interactive1 = () => {
                 updateLine('.line-2', this.x + 24, this.y + 109.5, '#line-2_gradient');
             },
             onRelease: function () {
-                if (this.x < 190 || this.y > -45 || this.y < -60) {
+                if (this.x < 190 || this.x > 212 || this.y > -48 || this.y < -54) {
                     reset('.draggable-2', '.line-2', 18, 109.5);
                     complete(1, false);
                 } else {
@@ -137,7 +137,7 @@ export const Interactive1 = () => {
                 updateLine('.line-3', this.x + 24, this.y + 58.5, '#line-3_gradient');
             },
             onRelease: function () {
-                if (this.x < 190 || this.y > 110 || this.y < 95) {
+                if (this.x < 190 || this.x > 212 || this.y > 103 || this.y < 98) {
                     reset('.draggable-3', '.line-3', 18, 58.5);
                     complete(2, false);
                 } else {
@@ -153,7 +153,7 @@ export const Interactive1 = () => {
                 updateLine('.line-4', this.x + 24, this.y + 7.8, '#line-4_gradient');
             },
             onRelease: function () {
-                if (this.x < 190 || this.y > 110 || this.y < 95) {
+                if (this.x < 190 || this.x > 212 || this.y > 103 || this.y < 98) {
                     reset('.draggable-4', '.line-4', 19, 7.8);
                     complete(3, false);
                 } else {
