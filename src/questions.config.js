@@ -17,7 +17,7 @@ export const questions = [
         text: 'Утро понедельника. \n' +
             'Наступил твой первый \n' +
             'рабочий день в Axenix. \n' +
-            'Тебя ждут в офисе к 10.',
+            'Тебя ждут в офисе к 9.',
         question: 'Я проснусь...',
         noCharacterText: true,
         characterQuestion: true,
