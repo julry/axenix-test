@@ -53,6 +53,10 @@ const AnswerWrapper = styled.div`
     padding: ${({isShort}) => isShort ? '15px' : '15px 25px'};
     width: ${({isShort}) => isShort ? '7.6em' : '100%'};
   }
+
+  @media screen and (min-width: 380px) {
+    white-space: normal;
+  }
 `;
 
 const Number = styled.p`
